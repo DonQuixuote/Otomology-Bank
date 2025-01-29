@@ -959,4 +959,308 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
+
+    // Add user input button to menu
+    const userInputButton = document.createElement('button');
+    userInputButton.className = 'user-input-btn';
+    userInputButton.innerHTML = `
+        Share Reaction
+        <div class="subtitle">Submit your discovery</div>
+    `;
+
+    // Add the button to the slide menu after the submit changes button
+    slideMenu.appendChild(userInputButton);
+
+    // Create and add the user input modal HTML
+    const userInputModal = document.createElement('div');
+    userInputModal.className = 'user-input-modal';
+    userInputModal.innerHTML = `
+        <div class="user-input-content">
+            <button class="close-btn">×</button>
+            <div class="modal-tabs">
+                <button class="tab-btn active" data-tab="submit">Submit Reaction</button>
+                <button class="tab-btn" data-tab="forum">View Submissions</button>
+            </div>
+            
+            <div class="tab-content submit-tab active">
+                <h2>Share Your Reaction Discovery</h2>
+                <form id="reactionForm">
+                    <div class="input-group">
+                        <label for="username">Your Username:</label>
+                        <input type="text" id="username" required placeholder="Enter your username">
+                    </div>
+                    <div class="input-group">
+                        <label for="elementSymbol">Element Symbol:</label>
+                        <input type="text" id="elementSymbol" required placeholder="e.g., H, He, Li">
+                    </div>
+                    <div class="input-group">
+                        <label for="isotopeNumber">Isotope Number:</label>
+                        <input type="number" id="isotopeNumber" required placeholder="e.g., 1, 2, 3">
+                    </div>
+                    <div class="input-group">
+                        <label for="equation">Reaction Equation:</label>
+                        <input type="text" id="equation" required placeholder="e.g., H1+He2 or Mineable">
+                    </div>
+                    <div class="input-group">
+                        <label for="energy">Energy Required:</label>
+                        <input type="number" id="energy" required placeholder="Energy value">
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Reaction</button>
+                </form>
+                <div id="submissionMessage" class="submission-message"></div>
+            </div>
+
+            <div class="tab-content forum-tab">
+                <h2>Community Submissions</h2>
+                <div class="submissions-list">
+                    <!-- Sample submissions -->
+                    <div class="submission-card">
+                        <div class="submission-header">
+                            <span class="username">JohnDoe</span>
+                            <span class="timestamp">2 hours ago</span>
+                        </div>
+                        <div class="submission-content">
+                            <div class="reaction-details">
+                                <span class="element">He-3</span>
+                                <span class="equation">Li2+Be4</span>
+                                <span class="energy">1200 energy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(userInputModal);
+
+    // Add styles for the user input components
+    style.textContent += `
+        .user-input-btn {
+            display: block;
+            margin: 5px auto;  /* Changed from 10px auto to 5px auto to reduce spacing */
+            padding: 8px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            text-align: center;
+            transition: background-color 0.2s;
+            cursor: pointer;
+            font-size: 14px;
+            width: calc(100% - 40px);
+            max-width: 200px;
+        }
+
+        .user-input-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .user-input-content {
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            color: white;
+        }
+
+        .modal-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #444;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            margin-bottom: -2px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4CAF50;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #333;
+            color: white;
+        }
+
+        .submissions-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .submission-card {
+            background: #333;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .submission-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .username {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .reaction-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2a2a2a;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .element {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .equation {
+            color: #fff;
+        }
+
+        .energy {
+            color: #ffd700;
+        }
+
+        .submission-message {
+            margin-top: 15px;
+            text-align: center;
+            color: #4CAF50;
+            display: none;
+        }
+    `;
+
+    // Add event listeners for the tabs
+    const tabButtons = userInputModal.querySelectorAll('.tab-btn');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            userInputModal.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            button.classList.add('active');
+            const tabName = button.dataset.tab;
+            userInputModal.querySelector(`.${tabName}-tab`).classList.add('active');
+        });
+    });
+
+    // Add event listeners for the modal
+    userInputButton.addEventListener('click', () => {
+        userInputModal.style.display = 'flex';
+        slideMenu.classList.remove('active');
+    });
+
+    userInputModal.querySelector('.close-btn').addEventListener('click', () => {
+        userInputModal.style.display = 'none';
+    });
+
+    userInputModal.addEventListener('click', (e) => {
+        if (e.target === userInputModal) {
+            userInputModal.style.display = 'none';
+        }
+    });
+
+    // Handle form submission
+    const reactionForm = document.getElementById('reactionForm');
+    reactionForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            username: document.getElementById('username').value,
+            elementSymbol: document.getElementById('elementSymbol').value,
+            isotopeNumber: document.getElementById('isotopeNumber').value,
+            equation: document.getElementById('equation').value,
+            energy: document.getElementById('energy').value,
+            timestamp: new Date().toISOString()
+        };
+
+        // Add the new submission to the forum view
+        const submissionsList = userInputModal.querySelector('.submissions-list');
+        const newSubmission = document.createElement('div');
+        newSubmission.className = 'submission-card';
+        newSubmission.innerHTML = `
+            <div class="submission-header">
+                <span class="username">${formData.username}</span>
+                <span class="timestamp">Just now</span>
+            </div>
+            <div class="submission-content">
+                <div class="reaction-details">
+                    <span class="element">${formData.elementSymbol}-${formData.isotopeNumber}</span>
+                    <span class="equation">${formData.equation}</span>
+                    <span class="energy">${formData.energy} energy</span>
+                </div>
+            </div>
+        `;
+        submissionsList.insertBefore(newSubmission, submissionsList.firstChild);
+
+        // Show success message
+        const submissionMessage = document.getElementById('submissionMessage');
+        submissionMessage.textContent = 'Reaction submitted successfully! Thank you for your contribution.';
+        submissionMessage.style.display = 'block';
+
+        // Clear form
+        reactionForm.reset();
+
+        // Hide message after 3 seconds
+        setTimeout(() => {
+            submissionMessage.style.display = 'none';
+        }, 3000);
+    });
+
+    // Find the style section for the element text colors and update them
+    style.textContent += `
+        .atomic-number,
+        .symbol,
+        .mass-number,
+        .name {
+            color: black;  /* Changed from #4CAF50 to black */
+        }
+    `;
 }); 
