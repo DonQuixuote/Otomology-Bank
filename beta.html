@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otom.Cookbook</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto Mono', monospace;
+            background-color: #f0f0f0;
+        }
+        
+        .beta-text {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-toggle">
+        <div class="hamburger">☰</div>
+    </div>
+
+    <div class="slide-menu">
+        <div class="menu-close">×</div>
+        <div class="menu-content">
+            <!-- OTOM Section -->
+            <a href="https://www.otom.xyz" class="menu-item otom" target="_blank">OTOM</a>
+            
+            <!-- Divider -->
+            <div class="menu-divider">
+                <span>Explore Universe</span>
+            </div>
+            
+            <!-- Universe Navigation -->
+            <a href="index.html" class="menu-item alpha">ALPHA</a>
+            <a href="beta.html" class="menu-item beta">BETA</a>
+            
+            <!-- Resources Section -->
+            <div class="menu-divider">
+                <span>Resources</span>
+            </div>
+            
+            <!-- Resource Links -->
+            <a href="#" class="menu-item roadmap" id="roadmapBtn">ROADMAP</a>
+            <a href="https://swap.reservoir.tools/#/swap?chain=shape" class="menu-item faucet" target="_blank">
+                FAUCET
+                <span class="subtitle">Swap for NRG</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="beta-text">BETA</div>
+        <background-image></background-image>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

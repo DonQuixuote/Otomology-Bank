@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(8, 100px);
+    grid-gap: 4px;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px;
+    border: 3px solid #e0e0e0;  /* Lighter border color */
+    background-color: #f0f0f0;  /* Match body background */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);  /* Inset shadow for depth */
+}
+
+.element {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #e0e0e0;  /* Lighter border color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1);  /* Subtle inset shadow */
+}
+
+.element:hover {
+    background-color: #e0e0e0;
+}
+
+.element .atomic-number {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 12px;
+}
+
+.element .mass-number {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    font-size: 12px;
+}
+
+.element .symbol {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Hide the name div */
+.element .name {
+    display: none;
+}
+
+/* Empty grid spaces */
+.empty {
+    border: none;
+    background: none;
+    position: relative;
+}
+
+/* Add connecting lines between elements */
+.empty::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px dashed #e0e0e0;  /* Lighter dashed lines */
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.3); /* More transparent background */
+}
+
+.modal-content {
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+}
+
+.isotope-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.isotope-table th,
+.isotope-table td {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    text-align: left;
+    color: black; /* Ensure text remains readable */
+}
+
+.isotope-table th {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+#isotopes {
+    margin-top: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.beta-link {
+    display: block;
+    text-align: center;
+    margin: 20px 0;
+    color: #333;
+    text-decoration: none;
+}
+
+.beta-link:hover {
+    text-decoration: underline;
+}
+
+.page-number {
+    display: inline-block;
+    padding: 10px 30px;
+    margin: 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.page-number:hover {
+    background-color: #45a049;
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.hamburger {
+    font-size: 30px;
+    color: #4CAF50;
+}
+
+.slide-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    transition: left 0.3s ease;
+    z-index: 1001;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.slide-menu.active {
+    left: 0;
+}
+
+.menu-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.menu-content {
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-item {
+    display: block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.menu-item:hover {
+    background-color: #45a049;
+}
+
+.menu-item.otom {
+    background-color: #FF69B4;
+}
+
+.menu-item.otom:hover {
+    background-color: #FF1493;
+}
+
+.menu-item.alpha {
+    background-color: #4169E1; /* Royal Blue */
+}
+
+.menu-item.alpha:hover {
+    background-color: #1E90FF;
+}
+
+.menu-item.beta {
+    background-color: #4CAF50;
+}
+
+.menu-item.beta:hover {
+    background-color: #45a049;
+}
+
+.menu-item.roadmap {
+    background-color: #9932CC; /* Purple */
+}
+
+.menu-item.roadmap:hover {
+    background-color: #8B008B;
+}
+
+.menu-item.faucet {
+    background-color: #FFD700; /* Gold color */
+    position: relative;
+}
+
+.menu-item.faucet:hover {
+    background-color: #FFC800;
+}
+
+.menu-item .subtitle {
+    display: block;
+    font-size: 12px;
+    opacity: 0.8;
+    font-weight: normal;
+    margin-top: 4px;
+}
+
+.menu-divider {
+    margin: 20px 0;
+    text-align: center;
+    position: relative;
+    padding: 10px 0;
+}
+
+.menu-divider span {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0 10px;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.menu-divider:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.roadmap-modal .modal-content {
+    max-width: 900px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: rgba(30, 30, 40, 0.85);
+    color: white;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.roadmap-steps {
+    padding: 20px;
+}
+
+.roadmap-steps section {
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.roadmap-steps h2 {
+    color: #fff;
+    font-size: 28px;
+    margin-bottom: 25px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.roadmap-steps h3 {
+    color: #fff;
+    font-size: 22px;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px rgba(255,255,255,0.2);
+}
+
+.roadmap-steps p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.mineable-list, .direct-combinations, .advanced-combinations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 15px;
+}
+
+.isotope-item {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    backdrop-filter: blur(5px);
+}
+
+.isotope-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.15);
+}
+
+.isotope-item div:first-child {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.isotope-item div:nth-child(2) {
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+}
+
+.energy-cost {
+    font-size: 14px;
+    color: #8FD694;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Custom scrollbar for the modal */
+.roadmap-modal .modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.roadmap-modal .modal-content::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 5px;
+}
+
+.roadmap-modal .modal-content::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 5px;
+}
+
+.roadmap-modal .modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.4);
+}
+
+/* Close button styling */
+.roadmap-modal .close {
+    color: white;
+    opacity: 0.7;
+    font-size: 28px;
+    transition: opacity 0.2s;
+}
+
+.roadmap-modal .close:hover {
+    opacity: 1;
+}
+
+.section-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 15px;
+}
+
+.modal-content .energy-total {
+    text-align: right;
+    padding: 15px;
+    margin-top: 20px;
+    border-top: 2px solid rgba(255,255,255,0.2);
+    color: #070301;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(143,214,148,0.3);
+}
+
+.isotope-table {
+    margin-bottom: 0; /* Adjust table margin to work with total */
+}
+
+.usage-count {
+    font-size: 14px;
+    color: #8FD694;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-style: italic;
+} 

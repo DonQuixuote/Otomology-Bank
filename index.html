@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otomology Bank</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+</head>
+<body>
+    <div class="menu-toggle">
+        <div class="hamburger">☰</div>
+    </div>
+
+    <div class="slide-menu">
+        <div class="menu-close">×</div>
+        <div class="menu-content">
+            <!-- OTOM Section -->
+            <a href="https://www.otom.xyz" class="menu-item otom" target="_blank">OTOM</a>
+            
+            <!-- Divider -->
+            <div class="menu-divider">
+                <span>Explore Universe</span>
+            </div>
+            
+            <!-- Universe Navigation -->
+            <a href="index.html" class="menu-item alpha">ALPHA</a>
+            <a href="beta.html" class="menu-item beta">BETA</a>
+            
+            <!-- Resources Section -->
+            <div class="menu-divider">
+                <span>Resources</span>
+            </div>
+            
+            <!-- Resource Links -->
+            <a href="#" class="menu-item roadmap" id="roadmapBtn">ROADMAP</a>
+            <a href="https://swap.reservoir.tools/#/swap?chain=shape" class="menu-item faucet" target="_blank">
+                FAUCET
+                <span class="subtitle">Swap for NRG</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Periodic Table of Otoms</h1>
+        <h2>Universe Alpha </h2>
+        
+        
+        <div class="periodic-table" id="periodicTable">
+            <!-- Elements will be added dynamically via JavaScript -->
+        </div>
+        
+        <!-- Modal for element details -->
+        <div id="elementModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="elementName"></h2>
+                <div id="isotopes"></div>
+                <div id="combinations"></div>
+                <!-- Add image to modal if you want -->
+                <div id="elementImage"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add the roadmap modal -->
+    <div id="roadmapModal" class="modal roadmap-modal">
+        <div class="modal-content roadmap-content">
+            <span class="close">&times;</span>
+            <h2>Isotope Creation Roadmap</h2>
+            <div class="roadmap-steps">
+                <section>
+                    <h3>Step 1: Mineable Elements</h3>
+                    <p>Start by collecting these mineable isotopes as your foundation:</p>
+                    <div class="mineable-list"></div>
+                </section>
+                
+                <section>
+                    <h3>Step 2: Direct Combinations</h3>
+                    <p>Create these isotopes using only mineable elements (sorted by energy cost):</p>
+                    <div class="direct-combinations"></div>
+                </section>
+                
+                <section>
+                    <h3>Step 3: Advanced Combinations</h3>
+                    <p>Create these isotopes using previously crafted elements:</p>
+                    <div class="advanced-combinations"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
