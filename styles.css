@@ -271,7 +271,7 @@ h2 {
 }
 
 .menu-item.beta:hover {
-    background-color: #45a049;
+    background-color: #458ba0;
 }
 
 .menu-item.roadmap {
@@ -279,7 +279,7 @@ h2 {
 }
 
 .menu-item.roadmap:hover {
-    background-color: #8B008B;
+    background-color: #e04a51;
 }
 
 .menu-item.faucet {
@@ -289,6 +289,15 @@ h2 {
 
 .menu-item.faucet:hover {
     background-color: #FFC800;
+}
+
+.menu-item.market {
+    background-color: #6345b6; /* Green color - feel free to change */
+    position: relative;
+}
+
+.menu-item.market:hover {
+    background-color: #2485c5;
 }
 
 .menu-item .subtitle {
@@ -473,4 +482,30 @@ h2 {
     padding-top: 8px;
     border-top: 1px solid rgba(255,255,255,0.1);
     font-style: italic;
+}
+
+.user-input-btn {
+    display: block;
+    margin: 5px auto;
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    font-size: 14px;
+    width: calc(100% - 40px);
+    max-width: 200px;
+}
+
+.user-input-btn:hover {
+    background: #45a049;
+}
+
+.user-input-btn .subtitle {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 4px;
 } 
