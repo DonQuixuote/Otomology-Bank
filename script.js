@@ -1037,9 +1037,9 @@ document.addEventListener('DOMContentLoaded', function() {
     style.textContent += `
         .user-input-btn {
             display: block;
-            margin: 5px auto;  /* Changed from 10px auto to 5px auto to reduce spacing */
+            margin: 10px;
             padding: 8px 15px;
-            background: #4CAF50;
+            background: #9C27B0;  /* Purple color */
             color: white;
             border: none;
             border-radius: 6px;
@@ -1047,8 +1047,22 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: background-color 0.2s;
             cursor: pointer;
             font-size: 14px;
-            width: calc(100% - 40px);
+            position: fixed;  /* Changed from absolute to fixed */
+            top: 20px;       /* Position from top */
+            right: 20px;     /* Position from right */
+            width: auto;     /* Let the width be determined by content */
             max-width: 200px;
+            z-index: 100;    /* Ensure it's above other elements */
+        }
+
+        .user-input-btn:hover {
+            background: #7B1FA2;
+        }
+
+        .user-input-btn .subtitle {
+            font-size: 10px;
+            opacity: 0.8;
+            margin-top: 2px;
         }
 
         .user-input-modal {
