@@ -106,7 +106,7 @@ const isotopeEquations = {
         { number: 16, isotope: 'Dx-16', equation: 'Mineable', energy: '' },
         { number: 17, isotope: 'Dx-17', equation: 'Mineable', energy: '' },
         { number: 18, isotope: 'Dx-18', equation: 'Xc34', energy: '2600' },
-        { number: 19, isotope: 'Dx-19', equation: 'Pm18', energy: '3150' }
+        { number: 19, isotope: 'Dx-19', equation: 'Fj41', energy: '10' }
     ],
     'Pm': [
         { number: 17, isotope: 'Pm-17', equation: 'Mineable', energy: '' },
