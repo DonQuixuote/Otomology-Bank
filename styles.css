@@ -300,6 +300,15 @@ h2 {
     background-color: #2485c5;
 }
 
+.menu-item.reaction {
+    background-color: #020202; /* Purple color */
+    position: relative;
+}
+
+.menu-item.reaction:hover {
+    background-color: #626063;
+}
+
 .menu-item .subtitle {
     display: block;
     font-size: 12px;
