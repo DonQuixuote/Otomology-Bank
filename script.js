@@ -960,16 +960,8 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 
-    // Add user input button to menu
-    const userInputButton = document.createElement('button');
-    userInputButton.className = 'user-input-btn';
-    userInputButton.innerHTML = `
-        Share Reaction
-        <div class="subtitle">Submit your discovery</div>
-    `;
-
-    // Add the button to the slide menu after the submit changes button
-    slideMenu.appendChild(userInputButton);
+    // Instead, get the new menu button we created
+    const userInputButton = document.querySelector('.menu-item.reaction');
 
     // Create and add the user input modal HTML
     const userInputModal = document.createElement('div');
