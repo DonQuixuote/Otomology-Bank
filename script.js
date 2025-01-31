@@ -1214,10 +1214,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Handle form submission
-   const reactionForm = document.getElementById('reactionForm');
+    const reactionForm = document.getElementById('reactionForm');
     reactionForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
+        // Instead of trying to submit directly, redirect to GitHub issue creation
         const formData = {
             username: document.getElementById('username').value,
             elementSymbol: document.getElementById('elementSymbol').value,
@@ -1226,11 +1227,8 @@ document.addEventListener('DOMContentLoaded', function() {
             energy: document.getElementById('energy').value
         };
 
-        // Create GitHub issue
-        try {
-            const issue = {
-                title: `New Reaction: ${formData.elementSymbol}-${formData.isotopeNumber}`,
-                body: `
+        const issueTitle = `New Reaction: ${formData.elementSymbol}-${formData.isotopeNumber}`;
+        const issueBody = `
 **Submitted by:** ${formData.username}
 **Element:** ${formData.elementSymbol}-${formData.isotopeNumber}
 **Equation:** ${formData.equation}
@@ -1238,42 +1236,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ---
 *This issue was automatically created from the Otomology Bank reaction submission form.*
-                `
-            };
+        `;
 
-            const response = await fetch('https://api.github.com/repos/Donquixuote/Otomology-Bank/issues', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(issue)
-            });
-
-            if (response.ok) {
-                // Show success message
-                const submissionMessage = document.getElementById('submissionMessage');
-                submissionMessage.textContent = 'Reaction submitted successfully! Thank you for your contribution.';
-                submissionMessage.style.display = 'block';
-                
-                // Clear form
-                reactionForm.reset();
-
-                // Hide message after 3 seconds
-                setTimeout(() => {
-                    submissionMessage.style.display = 'none';
-                }, 3000);
-            } else {
-                throw new Error('Failed to submit');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            const submissionMessage = document.getElementById('submissionMessage');
-            submissionMessage.textContent = 'Error submitting reaction. Please try again.';
-            submissionMessage.style.display = 'block';
-            submissionMessage.style.color = '#ff4444';
-        }
+        const githubIssueURL = `https://github.com/Donquixuote/Otomology-Bank/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
+        
+        window.open(githubIssueURL, '_blank');
     });
 
     // Update the loadSubmissions function to use the read-only method
