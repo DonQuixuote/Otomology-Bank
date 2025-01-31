@@ -20,6 +20,20 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 30px;
+    font-size: 2.8em;
+    color: #e0e0e0;  /* Light base color */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 800;
+    background-color: #f0f0f0;  /* Slightly lighter than body background */
+    padding: 25px 0;
+    text-shadow: 
+        1px 1px 1px rgba(255,255,255,0.5),
+        -1px -1px 1px rgba(0,0,0,0.3),
+        -1px 1px 1px rgba(0,0,0,0.2);
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(255,255,255,0.5);
 }
 
 .periodic-table {
@@ -154,8 +168,17 @@ h1 {
 }
 
 h2 {
-    margin-bottom: 20px;
-    color: #333;
+    text-align: center;
+    font-size: 2em;
+    margin: 20px 0;
+    color: #e0e0e0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-shadow: 
+        1px 1px 1px rgba(255,255,255,0.5),
+        -1px -1px 1px rgba(0,0,0,0.3);
+    padding: 15px 0;
 }
 
 .beta-link {
@@ -275,20 +298,20 @@ h2 {
 }
 
 .menu-item.roadmap {
-    background-color: #9932CC; /* Purple */
+    background-color: #75ada6; /* Purple */
 }
 
 .menu-item.roadmap:hover {
-    background-color: #e04a51;
+    background-color: #5883b4;
 }
 
 .menu-item.faucet {
-    background-color: #FFD700; /* Gold color */
+    background-color: #2e2e2d; /* Gold color */
     position: relative;
 }
 
 .menu-item.faucet:hover {
-    background-color: #FFC800;
+    background-color: #6d6d6b;
 }
 
 .menu-item.market {
@@ -517,4 +540,87 @@ h2 {
     font-size: 12px;
     opacity: 0.8;
     margin-top: 4px;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    background: #2fe0d2; /* Purple to match your theme */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover {
+    background: #71c2c2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    width: 32px;
+    height: 32px;
+    background: #2fe0d2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn:hover {
+    background: #41a0b1;
+    transform: rotate(90deg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn:active {
+    transform: rotate(90deg) scale(0.95);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.view-issue {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #2fe0d2;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.view-issue:hover {
+    background: #4297a7;
+    transform: translateX(2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.view-issue:active {
+    transform: translateX(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 } 

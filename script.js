@@ -1214,8 +1214,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Handle form submission
-    const reactionForm = document.getElementById('reactionForm');
-    reactionForm.addEventListener('submit', (e) => {
+   const reactionForm = document.getElementById('reactionForm');
+    reactionForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const formData = {
@@ -1223,42 +1223,104 @@ document.addEventListener('DOMContentLoaded', function() {
             elementSymbol: document.getElementById('elementSymbol').value,
             isotopeNumber: document.getElementById('isotopeNumber').value,
             equation: document.getElementById('equation').value,
-            energy: document.getElementById('energy').value,
-            timestamp: new Date().toISOString()
+            energy: document.getElementById('energy').value
         };
 
-        // Add the new submission to the forum view
-        const submissionsList = userInputModal.querySelector('.submissions-list');
-        const newSubmission = document.createElement('div');
-        newSubmission.className = 'submission-card';
-        newSubmission.innerHTML = `
-            <div class="submission-header">
-                <span class="username">${formData.username}</span>
-                <span class="timestamp">Just now</span>
-            </div>
-            <div class="submission-content">
-                <div class="reaction-details">
-                    <span class="element">${formData.elementSymbol}-${formData.isotopeNumber}</span>
-                    <span class="equation">${formData.equation}</span>
-                    <span class="energy">${formData.energy} energy</span>
-                </div>
-            </div>
-        `;
-        submissionsList.insertBefore(newSubmission, submissionsList.firstChild);
+        // Create GitHub issue
+        try {
+            const issue = {
+                title: `New Reaction: ${formData.elementSymbol}-${formData.isotopeNumber}`,
+                body: `
+**Submitted by:** ${formData.username}
+**Element:** ${formData.elementSymbol}-${formData.isotopeNumber}
+**Equation:** ${formData.equation}
+**Energy Required:** ${formData.energy}
 
-        // Show success message
-        const submissionMessage = document.getElementById('submissionMessage');
-        submissionMessage.textContent = 'Reaction submitted successfully! Thank you for your contribution.';
-        submissionMessage.style.display = 'block';
+---
+*This issue was automatically created from the Otomology Bank reaction submission form.*
+                `
+            };
 
-        // Clear form
-        reactionForm.reset();
+            const response = await fetch('https://api.github.com/repos/Donquixuote/Otomology-Bank/issues', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(issue)
+            });
 
-        // Hide message after 3 seconds
-        setTimeout(() => {
-            submissionMessage.style.display = 'none';
-        }, 3000);
+            if (response.ok) {
+                // Show success message
+                const submissionMessage = document.getElementById('submissionMessage');
+                submissionMessage.textContent = 'Reaction submitted successfully! Thank you for your contribution.';
+                submissionMessage.style.display = 'block';
+                
+                // Clear form
+                reactionForm.reset();
+
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    submissionMessage.style.display = 'none';
+                }, 3000);
+            } else {
+                throw new Error('Failed to submit');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            const submissionMessage = document.getElementById('submissionMessage');
+            submissionMessage.textContent = 'Error submitting reaction. Please try again.';
+            submissionMessage.style.display = 'block';
+            submissionMessage.style.color = '#ff4444';
+        }
     });
+
+    // Update the loadSubmissions function to use the read-only method
+    async function loadSubmissions() {
+        try {
+            const response = await fetch('https://api.github.com/repos/Donquixuote/Otomology-Bank/issues?state=open');
+            const issues = await response.json();
+            
+            const submissionsList = document.querySelector('.submissions-list');
+            submissionsList.innerHTML = ''; // Clear existing submissions
+
+            issues.forEach(issue => {
+                if (issue.title.startsWith('New Reaction:')) {
+                    // Parse the issue body to extract information
+                    const bodyLines = issue.body.split('\n');
+                    const element = bodyLines.find(line => line.startsWith('**Element:**'))?.replace('**Element:**', '').trim();
+                    const equation = bodyLines.find(line => line.startsWith('**Equation:**'))?.replace('**Equation:**', '').trim();
+                    const energy = bodyLines.find(line => line.startsWith('**Energy Required:**'))?.replace('**Energy Required:**', '').trim();
+
+                    const submissionCard = document.createElement('div');
+                    submissionCard.className = 'submission-card';
+                    submissionCard.innerHTML = `
+                        <div class="submission-header">
+                            <span class="username">${issue.user.login}</span>
+                            <span class="timestamp">${new Date(issue.created_at).toLocaleDateString()}</span>
+                        </div>
+                        <div class="submission-content">
+                            <div class="reaction-details">
+                                <span class="element">${element}</span>
+                                <span class="equation">${equation}</span>
+                                <span class="energy">${energy}</span>
+                                <a href="${issue.html_url}" target="_blank" class="view-issue">View Details →</a>
+                            </div>
+                        </div>
+                    `;
+                    submissionsList.appendChild(submissionCard);
+                }
+            });
+        } catch (error) {
+            console.error('Error loading submissions:', error);
+            const submissionsList = document.querySelector('.submissions-list');
+            submissionsList.innerHTML = '<div class="error-message">Unable to load submissions at this time.</div>';
+        }
+    }
+
+    // Keep the event listener for loading submissions
+    document.querySelector('[data-tab="forum"]').addEventListener('click', loadSubmissions);
 
     // Find the style section for the element text colors and update them
     style.textContent += `
