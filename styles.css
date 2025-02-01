@@ -7,6 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -623,4 +624,164 @@ h2 {
 .view-issue:active {
     transform: translateX(1px);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 80px; /* Position it to the left of the menu button */
+    z-index: 1000;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode-toggle .moon {
+    display: none;
+}
+
+/* Dark mode classes */
+body.dark-mode {
+    background-color: #2a2a2a;  /* Match menu background */
+    color: #ffffff;
+}
+
+body.dark-mode .element {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .atomic-number,
+body.dark-mode .symbol,
+body.dark-mode .mass-number,
+body.dark-mode .name {
+    color: black;  /* Keep text black */
+}
+
+/* Dark mode specific styles */
+.dark-mode .dark-mode-toggle .sun {
+    display: none;
+}
+
+.dark-mode .dark-mode-toggle .moon {
+    display: inline;
+}
+
+/* Dark mode styles for headings and periodic table */
+body.dark-mode h1,
+body.dark-mode h2 {
+    color: #3f3d3d;  /* Light gray, easily visible */
+    text-shadow: 
+        1px 1px 1px rgba(0,0,0,0.5),
+        -1px -1px 1px rgba(255,255,255,0.1),
+        -1px 1px 1px rgba(255,255,255,0.1);
+    background-color: #2a2a2a;  /* Match periodic table background */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(0,0,0,0.3);
+}
+
+body.dark-mode .periodic-table {
+    border: 3px solid #333333;  /* Darker border */
+    background-color: #2a2a2a;  /* Darker background */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Update empty grid spaces in dark mode */
+body.dark-mode .empty::after {
+    border: 1px dashed #333333;  /* Darker dashed lines */
+    opacity: 0.3;
+}
+
+/* Update element borders in dark mode */
+body.dark-mode .element {
+    border: 2px solid #333333;  /* Darker border */
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .element:hover {
+    background-color: #2a2a2a;  /* Darker hover state */
+}
+
+/* Dark mode styles for the Periodic Table heading */
+body.dark-mode h1 {
+    color: #e0e0e0;  /* Light gray */
+    text-shadow: 
+        1px 1px 1px rgba(0,0,0,0.5),
+        -1px -1px 1px rgba(255,255,255,0.1),
+        -1px 1px 1px rgba(255,255,255,0.1);
+}
+
+/* Ensure element hover state doesn't affect text color */
+body.dark-mode .element:hover .atomic-number,
+body.dark-mode .element:hover .symbol,
+body.dark-mode .element:hover .mass-number,
+body.dark-mode .element:hover .name {
+    color: black;  /* Maintain black text on hover */
+}
+
+/* Update the main title text colors in dark mode */
+body.dark-mode h1 {
+    color: #292929;  /* Light gray, easily visible */
+    text-shadow: 
+        1px 1px 1px rgba(0,0,0,0.5),
+        -1px -1px 1px rgba(255,255,255,0.1),
+        -1px 1px 1px rgba(255,255,255,0.1);
+}
+
+/* Specific style for the "Periodic Table of Otoms" text */
+body.dark-mode h1:not(.modal h1) {
+    color: #2e2d2d;  /* Light gray */
+    text-shadow: 
+        1px 1px 1px rgba(0,0,0,0.5),
+        -1px -1px 1px rgba(255,255,255,0.1),
+        -1px 1px 1px rgba(255,255,255,0.1);
+}
+
+/* Ensure the text itself is visible */
+body.dark-mode h1 span,
+body.dark-mode h2 span,
+body.dark-mode .title-text {
+    color: #2b2a2a;  /* Light gray */
+}
+
+/* Specific style for the main titles */
+body.dark-mode .periodic-title,
+body.dark-mode .universe-title {
+    color: #353232;  /* Light gray */
+    text-shadow: 
+        1px 1px 1px rgba(0,0,0,0.5),
+        -1px -1px 1px rgba(255,255,255,0.1),
+        -1px 1px 1px rgba(255,255,255,0.1);
+}
+
+/* Update menu background in dark mode to match */
+body.dark-mode .slide-menu {
+    background-color: #2a2a2a;
+    backdrop-filter: blur(5px);
+}
+
+/* Update modal background in dark mode */
+body.dark-mode .modal-content {
+    background-color: #2a2a2a;
+}
+
+/* Ensure consistent background for other elements */
+body.dark-mode .periodic-table {
+    background-color: #2a2a2a;
+}
+
+body.dark-mode h1,
+body.dark-mode h2 {
+    background-color: #2a2a2a;
 } 
