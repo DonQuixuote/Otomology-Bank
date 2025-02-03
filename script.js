@@ -513,10 +513,9 @@ function showElementDetails(elementSymbol, elementColor) {
     // Add GIF for any element
     const gifContent = `
         <div class="element-gif">
-            <img src="/Otomology-Bank/gifs/${elementSymbol[0].toUpperCase() + elementSymbol.slice(1).toLowerCase()}.gif"
+            <img src="./gifs/${elementSymbol[0].toUpperCase() + elementSymbol.slice(1).toLowerCase()}.gif"
                  alt="Element ${elementSymbol} animation" 
-                 onerror="console.log('Failed to load GIF:', '/Otomology-Bank/gifs/${elementSymbol[0].toUpperCase() + elementSymbol.slice(1).toLowerCase()}.gif'); this.parentElement.style.display='none'"
-                 onload="console.log('Successfully loaded GIF:', 'GIF loaded successfully')">
+                 onerror="this.parentElement.style.display='none'">
         </div>
     `;
 
