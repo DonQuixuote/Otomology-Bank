@@ -513,7 +513,7 @@ function showElementDetails(elementSymbol, elementColor) {
     // Add GIF for any element
     const gifContent = `
         <div class="element-gif">
-            <img src="./gifs/${elementSymbol[0].toUpperCase() + elementSymbol.slice(1).toLowerCase()}.gif"
+            <img src="gifs/${elementSymbol}.gif" 
                  alt="Element ${elementSymbol} animation" 
                  onerror="this.parentElement.style.display='none'">
         </div>
