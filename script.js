@@ -510,12 +510,24 @@ function showElementDetails(elementSymbol, elementColor) {
         </div>
     `;
 
+    // Add GIF for any element
+    const gifContent = `
+        <div class="element-gif">
+            <img src="gifs/${elementSymbol}.gif" 
+                 alt="Element ${elementSymbol} animation" 
+                 onerror="this.parentElement.style.display='none'">
+        </div>
+    `;
+
     modal.innerHTML = `
-        <div class="modal-content" style="background-color: ${elementColor.replace('rgb', 'rgba').replace(')', ', 0.4)')}">
+        <div class="modal-content" style="background-color: #E0D0CD">
             <span class="close">&times;</span>
             <h2>${elementSymbol}</h2>
-            <div class="isotope-info">
-                ${isotopesContent}
+            <div class="element-details">
+                ${gifContent}
+                <div class="isotope-info">
+                    ${isotopesContent}
+                </div>
             </div>
         </div>
     `;
@@ -778,6 +790,66 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }).join('');
 
+        // Generate Step 3: Isotope Usage Analysis
+        const generateIsotopeUsageTable = () => {
+            const isotopeUsage = new Map(); // Track isotope usage in equations
+            
+            // Go through all equations and count isotope appearances
+            for (const [element, isotopes] of Object.entries(isotopeEquations)) {
+                isotopes.forEach(isotope => {
+                    if (isotope.equation && isotope.equation !== 'Mineable') {
+                        // Split equation into components
+                        const components = isotope.equation.split('+');
+                        components.forEach(comp => {
+                            // Extract element symbol and number (e.g., "Ju1" -> ["Ju", "1"])
+                            const match = comp.trim().match(/([A-Z][a-z]*)(\d+)/);
+                            if (match) {
+                                const [_, elementSymbol, number] = match;
+                                const isotopeKey = `${elementSymbol}-${number}`;
+                                isotopeUsage.set(isotopeKey, (isotopeUsage.get(isotopeKey) || 0) + 1);
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Sort isotopes by usage count
+            const sortedIsotopes = Array.from(isotopeUsage.entries())
+                .sort((a, b) => b[1] - a[1]);
+
+            return `
+                <div class="step-title">Step 3: Isotope Usage Analysis</div>
+                <div class="isotope-table-container">
+                    <table class="isotope-usage-table">
+                        <thead>
+                            <tr>
+                                <th>Isotope</th>
+                                <th>Times Used in Equations</th>
+                                <th>Usage Bar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${sortedIsotopes.map(([isotope, count]) => {
+                                const maxCount = sortedIsotopes[0][1];
+                                const percentage = (count / maxCount) * 100;
+                                return `
+                                    <tr>
+                                        <td>${isotope}</td>
+                                        <td>${count}</td>
+                                        <td>
+                                            <div class="usage-bar">
+                                                <div class="usage-fill" style="width: ${percentage}%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        };
+
         const roadmapContent = `
             <style>
                 .popup {
@@ -881,6 +953,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 <div class="step-title">Step 2: Elements from Mineable Components</div>
                 ${generateStep2Cards(sortedStep2)}
+
+                ${generateIsotopeUsageTable()}
             </div>
         `;
 
@@ -1215,50 +1289,79 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle form submission
     const reactionForm = document.getElementById('reactionForm');
-    reactionForm.addEventListener('submit', (e) => {
+    reactionForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
+        // Instead of trying to submit directly, redirect to GitHub issue creation
         const formData = {
             username: document.getElementById('username').value,
             elementSymbol: document.getElementById('elementSymbol').value,
             isotopeNumber: document.getElementById('isotopeNumber').value,
             equation: document.getElementById('equation').value,
-            energy: document.getElementById('energy').value,
-            timestamp: new Date().toISOString()
+            energy: document.getElementById('energy').value
         };
 
-        // Add the new submission to the forum view
-        const submissionsList = userInputModal.querySelector('.submissions-list');
-        const newSubmission = document.createElement('div');
-        newSubmission.className = 'submission-card';
-        newSubmission.innerHTML = `
-            <div class="submission-header">
-                <span class="username">${formData.username}</span>
-                <span class="timestamp">Just now</span>
-            </div>
-            <div class="submission-content">
-                <div class="reaction-details">
-                    <span class="element">${formData.elementSymbol}-${formData.isotopeNumber}</span>
-                    <span class="equation">${formData.equation}</span>
-                    <span class="energy">${formData.energy} energy</span>
-                </div>
-            </div>
+        const issueTitle = `New Reaction: ${formData.elementSymbol}-${formData.isotopeNumber}`;
+        const issueBody = `
+**Submitted by:** ${formData.username}
+**Element:** ${formData.elementSymbol}-${formData.isotopeNumber}
+**Equation:** ${formData.equation}
+**Energy Required:** ${formData.energy}
+
+---
+*This issue was automatically created from the Otomology Bank reaction submission form.*
         `;
-        submissionsList.insertBefore(newSubmission, submissionsList.firstChild);
 
-        // Show success message
-        const submissionMessage = document.getElementById('submissionMessage');
-        submissionMessage.textContent = 'Reaction submitted successfully! Thank you for your contribution.';
-        submissionMessage.style.display = 'block';
-
-        // Clear form
-        reactionForm.reset();
-
-        // Hide message after 3 seconds
-        setTimeout(() => {
-            submissionMessage.style.display = 'none';
-        }, 3000);
+        const githubIssueURL = `https://github.com/Donquixuote/Otomology-Bank/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
+        
+        window.open(githubIssueURL, '_blank');
     });
+
+    // Update the loadSubmissions function to use the read-only method
+    async function loadSubmissions() {
+        try {
+            const response = await fetch('https://api.github.com/repos/Donquixuote/Otomology-Bank/issues?state=open');
+            const issues = await response.json();
+            
+            const submissionsList = document.querySelector('.submissions-list');
+            submissionsList.innerHTML = ''; // Clear existing submissions
+
+            issues.forEach(issue => {
+                if (issue.title.startsWith('New Reaction:')) {
+                    // Parse the issue body to extract information
+                    const bodyLines = issue.body.split('\n');
+                    const element = bodyLines.find(line => line.startsWith('**Element:**'))?.replace('**Element:**', '').trim();
+                    const equation = bodyLines.find(line => line.startsWith('**Equation:**'))?.replace('**Equation:**', '').trim();
+                    const energy = bodyLines.find(line => line.startsWith('**Energy Required:**'))?.replace('**Energy Required:**', '').trim();
+
+                    const submissionCard = document.createElement('div');
+                    submissionCard.className = 'submission-card';
+                    submissionCard.innerHTML = `
+                        <div class="submission-header">
+                            <span class="username">${issue.user.login}</span>
+                            <span class="timestamp">${new Date(issue.created_at).toLocaleDateString()}</span>
+                        </div>
+                        <div class="submission-content">
+                            <div class="reaction-details">
+                                <span class="element">${element}</span>
+                                <span class="equation">${equation}</span>
+                                <span class="energy">${energy}</span>
+                                <a href="${issue.html_url}" target="_blank" class="view-issue">View Details →</a>
+                            </div>
+                        </div>
+                    `;
+                    submissionsList.appendChild(submissionCard);
+                }
+            });
+        } catch (error) {
+            console.error('Error loading submissions:', error);
+            const submissionsList = document.querySelector('.submissions-list');
+            submissionsList.innerHTML = '<div class="error-message">Unable to load submissions at this time.</div>';
+        }
+    }
+
+    // Keep the event listener for loading submissions
+    document.querySelector('[data-tab="forum"]').addEventListener('click', loadSubmissions);
 
     // Find the style section for the element text colors and update them
     style.textContent += `
@@ -1269,4 +1372,76 @@ document.addEventListener('DOMContentLoaded', function() {
             color: black;  /* Changed from #4CAF50 to black */
         }
     `;
+
+    // Add these styles to your CSS
+    style.textContent += `
+        .isotope-table-container {
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+
+        .isotope-usage-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .isotope-usage-table th,
+        .isotope-usage-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .isotope-usage-table th {
+            background: #333;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .isotope-usage-table tr:hover {
+            background: #333;
+        }
+
+        .usage-bar {
+            width: 100%;
+            height: 8px;
+            background: #444;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .usage-fill {
+            height: 100%;
+            background: #4CAF50;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+    `;
 }); 
+
+// Dark mode toggle functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    
+    // Check for saved dark mode preference
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'enabled') {
+        document.body.classList.add('dark-mode');
+    }
+    
+    darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        
+        // Save preference
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            localStorage.setItem('darkMode', null);
+        }
+    });
+});

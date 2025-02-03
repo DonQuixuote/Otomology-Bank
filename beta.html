@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otomology Bank</title>
+    <title>Otom.Cookbook</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/jpeg" href="favicon.jpg">
     <style>
@@ -50,10 +50,18 @@
             </div>
             
             <!-- Resource Links -->
+            <a href="#" class="menu-item reaction" id="userInputButton">
+                Share Reaction
+                <span class="subtitle">Submit New Isotopes</span>
+            </a>
             <a href="#" class="menu-item roadmap" id="roadmapBtn">ROADMAP</a>
             <a href="https://swap.reservoir.tools/#/swap?chain=shape" class="menu-item faucet" target="_blank">
-                FAUCET
-                <span class="subtitle">Swap for NRG</span>
+                Trade Energy
+                <span class="subtitle">Buy and Sell NRG</span>
+            </a>
+            <a href="https://market.otom.xyz" class="menu-item market" target="_blank">
+                Market
+                <span class="subtitle">Otoms and Compounds</span>
             </a>
         </div>
     </div>
@@ -62,7 +70,10 @@
         <div class="beta-text">BETA</div>
         <background-image></background-image>
     </div>
-
+    <button id="darkModeToggle" class="dark-mode-toggle">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+    </button>
     <script src="script.js"></script>
 </body>
 </html> 
