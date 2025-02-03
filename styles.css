@@ -126,19 +126,56 @@ h1 {
     padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     width: 80%;
-    max-width: 600px;
+    max-width: 900px;
     position: relative;
     border-radius: 15px;
     backdrop-filter: blur(8px);
+    text-align: center;
+}
+
+.element-details {
+    display: flex;
+    flex-direction: column;  /* Stack items vertically */
+    gap: 20px;
+    margin: 20px auto;
+    align-items: center;
+    max-width: 800px;
+}
+
+.element-gif {
+    width: 200px;  /* Reduced from 300px */
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
+
+.element-gif img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;  /* Match container's border radius */
+}
+
+.isotope-info {
+    width: 100%;  /* Full width for table container */
 }
 
 .isotope-table {
+    margin: 0 auto;
     width: 100%;
     border-collapse: collapse;
+}
+
+.energy-total {
+    text-align: center;
+    padding: 15px;
     margin-top: 20px;
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    overflow: hidden;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .isotope-table th,
@@ -493,21 +530,6 @@ h2 {
     padding: 15px;
 }
 
-.modal-content .energy-total {
-    text-align: right;
-    padding: 15px;
-    margin-top: 20px;
-    border-top: 2px solid rgba(255,255,255,0.2);
-    color: #070301;
-    font-size: 18px;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(143,214,148,0.3);
-}
-
-.isotope-table {
-    margin-bottom: 0; /* Adjust table margin to work with total */
-}
-
 .usage-count {
     font-size: 14px;
     color: #8FD694;
@@ -784,4 +806,52 @@ body.dark-mode .periodic-table {
 body.dark-mode h1,
 body.dark-mode h2 {
     background-color: #2a2a2a;
+}
+
+/* Update isotope usage table text colors */
+.isotope-usage-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;  /* Set default text color to white */
+}
+
+.isotope-usage-table th,
+.isotope-usage-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+    color: white;  /* Ensure all text is white */
+}
+
+.isotope-usage-table th {
+    background: #333;
+    color: #4CAF50;  /* Keep headers green */
+    font-weight: bold;
+}
+
+/* Ensure text stays white on hover */
+.isotope-usage-table tr:hover {
+    background: #333;
+    color: white;
+}
+
+/* Keep modal headers consistent in dark mode */
+body.dark-mode .modal-content h2,
+body.dark-mode .isotope-table th {
+    color: inherit;  /* This will keep the original color */
+    background-color: transparent;  /* Keep original background */
+}
+
+/* Ensure modal content stays consistent in dark mode */
+body.dark-mode .modal-content {
+    color: inherit;  /* Keep original text color */
+}
+
+/* Specifically target the table headers in the modal */
+body.dark-mode .isotope-table th {
+    background-color: #333;  /* Keep the original header background */
+    color: #4CAF50;  /* Keep the original green color */
 } 

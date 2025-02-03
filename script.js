@@ -510,12 +510,24 @@ function showElementDetails(elementSymbol, elementColor) {
         </div>
     `;
 
+    // Add GIF for any element
+    const gifContent = `
+        <div class="element-gif">
+            <img src="gifs/${elementSymbol}.gif" 
+                 alt="Element ${elementSymbol} animation" 
+                 onerror="this.parentElement.style.display='none'">
+        </div>
+    `;
+
     modal.innerHTML = `
-        <div class="modal-content" style="background-color: ${elementColor.replace('rgb', 'rgba').replace(')', ', 0.4)')}">
+        <div class="modal-content" style="background-color: #E0D0CD">
             <span class="close">&times;</span>
             <h2>${elementSymbol}</h2>
-            <div class="isotope-info">
-                ${isotopesContent}
+            <div class="element-details">
+                ${gifContent}
+                <div class="isotope-info">
+                    ${isotopesContent}
+                </div>
             </div>
         </div>
     `;
@@ -778,6 +790,66 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }).join('');
 
+        // Generate Step 3: Isotope Usage Analysis
+        const generateIsotopeUsageTable = () => {
+            const isotopeUsage = new Map(); // Track isotope usage in equations
+            
+            // Go through all equations and count isotope appearances
+            for (const [element, isotopes] of Object.entries(isotopeEquations)) {
+                isotopes.forEach(isotope => {
+                    if (isotope.equation && isotope.equation !== 'Mineable') {
+                        // Split equation into components
+                        const components = isotope.equation.split('+');
+                        components.forEach(comp => {
+                            // Extract element symbol and number (e.g., "Ju1" -> ["Ju", "1"])
+                            const match = comp.trim().match(/([A-Z][a-z]*)(\d+)/);
+                            if (match) {
+                                const [_, elementSymbol, number] = match;
+                                const isotopeKey = `${elementSymbol}-${number}`;
+                                isotopeUsage.set(isotopeKey, (isotopeUsage.get(isotopeKey) || 0) + 1);
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Sort isotopes by usage count
+            const sortedIsotopes = Array.from(isotopeUsage.entries())
+                .sort((a, b) => b[1] - a[1]);
+
+            return `
+                <div class="step-title">Step 3: Isotope Usage Analysis</div>
+                <div class="isotope-table-container">
+                    <table class="isotope-usage-table">
+                        <thead>
+                            <tr>
+                                <th>Isotope</th>
+                                <th>Times Used in Equations</th>
+                                <th>Usage Bar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${sortedIsotopes.map(([isotope, count]) => {
+                                const maxCount = sortedIsotopes[0][1];
+                                const percentage = (count / maxCount) * 100;
+                                return `
+                                    <tr>
+                                        <td>${isotope}</td>
+                                        <td>${count}</td>
+                                        <td>
+                                            <div class="usage-bar">
+                                                <div class="usage-fill" style="width: ${percentage}%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        };
+
         const roadmapContent = `
             <style>
                 .popup {
@@ -881,6 +953,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 <div class="step-title">Step 2: Elements from Mineable Components</div>
                 ${generateStep2Cards(sortedStep2)}
+
+                ${generateIsotopeUsageTable()}
             </div>
         `;
 
@@ -1296,6 +1370,56 @@ document.addEventListener('DOMContentLoaded', function() {
         .mass-number,
         .name {
             color: black;  /* Changed from #4CAF50 to black */
+        }
+    `;
+
+    // Add these styles to your CSS
+    style.textContent += `
+        .isotope-table-container {
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+
+        .isotope-usage-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .isotope-usage-table th,
+        .isotope-usage-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .isotope-usage-table th {
+            background: #333;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .isotope-usage-table tr:hover {
+            background: #333;
+        }
+
+        .usage-bar {
+            width: 100%;
+            height: 8px;
+            background: #444;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .usage-fill {
+            height: 100%;
+            background: #4CAF50;
+            border-radius: 4px;
+            transition: width 0.3s ease;
         }
     `;
 }); 
