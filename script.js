@@ -513,9 +513,10 @@ function showElementDetails(elementSymbol, elementColor) {
     // Add GIF for any element
     const gifContent = `
         <div class="element-gif">
-            <img src="gifs/${elementSymbol}.gif" 
+            <img src="./gifs/${elementSymbol}.gif" 
                  alt="Element ${elementSymbol} animation" 
-                 onerror="this.parentElement.style.display='none'">
+                 onerror="fetch('./gifs/${elementSymbol}.gif', {headers: {'Accept': 'image/gif'}}).then(r => r.blob()).then(blob => this.src = URL.createObjectURL(blob)).catch(e => this.parentElement.style.display='none')"
+                 onload="console.log('Successfully loaded:', this.src)">
         </div>
     `;
 
