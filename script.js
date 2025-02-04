@@ -513,7 +513,7 @@ function showElementDetails(elementSymbol, elementColor) {
     // Add GIF for any element
     const gifContent = `
         <div class="element-gif">
-            <img src="../gifs/${elementSymbol}.gif" 
+            img src="https://donquixuote.github.io/Otomology-Bank/gifs/${elementSymbol.toLowerCase()}.GIF"
                  type="image/gif"
                  accept="image/gif"
                  alt="Element ${elementSymbol} animation" 
