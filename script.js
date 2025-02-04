@@ -511,12 +511,16 @@ function showElementDetails(elementSymbol, elementColor) {
     `;
 
     // Add GIF for any element
-    const gifContent = `
-        <div class="element-gif">
-            img src="https://donquixuote.github.io/Otomology-Bank/gifs/${elementSymbol.toLowerCase()}.GIF"
-        
-        </div>
-    `;
+        const gifContent = `
+            <div class="element-gif">
+                <img src="https://donquixuote.github.io/Otomology-Bank/gifs/${elementSymbol.toLowerCase()}.GIF" 
+                     type="image/gif"
+                     accept="image/gif"
+                     alt="Element ${elementSymbol} animation" 
+                     onerror="console.log('Failed to load GIF:', this.src); this.parentElement.style.display='none'"
+                     onload="console.log('Successfully loaded:', this.src)">
+            </div>
+        `;
 
     modal.innerHTML = `
         <div class="modal-content" style="background-color: #E0D0CD">
