@@ -514,11 +514,7 @@ function showElementDetails(elementSymbol, elementColor) {
     const gifContent = `
         <div class="element-gif">
             img src="https://donquixuote.github.io/Otomology-Bank/gifs/${elementSymbol.toLowerCase()}.GIF"
-                 type="image/gif"
-                 accept="image/gif"
-                 alt="Element ${elementSymbol} animation" 
-                 onerror="console.log('Failed to load GIF:', this.src); this.parentElement.style.display='none'"
-                 onload="console.log('Successfully loaded:', this.src)">
+        
         </div>
     `;
 
