@@ -146,14 +146,14 @@ const isotopeEquations = {
         { number: 27, isotope: 'S-27', equation: 'Af9+Pm18', energy: '900' },
         { number: 28, isotope: 'S-28', equation: 'W5+M23', energy: '850' },
         { number: 29, isotope: 'S-29', equation: 'Nb54', energy: '4900' },
-        { number: 30, isotope: 'S-30', equation: 'Pq14+Zz16', energy: '1950' }
+        { number: 30, isotope: 'S-30', equation: 'Nb56', energy: '4850' }
     ],
     'Zq': [
         { number: 26, isotope: 'Zq-26', equation: 'Hb57', energy: '5000' },
         { number: 27, isotope: 'Zq-27', equation: 'Ju1+S26', energy: '750' },
         { number: 28, isotope: 'Zq-28', equation: 'Xl11+Pm17', energy: '950' },
         { number: 29, isotope: 'Zq-29', equation: 'Ju3+S26', energy: '850' },
-        { number: 30, isotope: 'Zq-30', equation: 'Xl11+Pm19', energy: '1450' },
+        { number: 30, isotope: 'Zq-30', equation: 'Pq14+Zz16', energy: '900' },
         { number: 31, isotope: 'Zq-31', equation: 'Cq6+Fw25', energy: '900' },
         { number: 32, isotope: 'Zq-32', equation: 'Mineable', energy: '' }
     ],
@@ -269,7 +269,7 @@ const isotopeEquations = {
         { number: 53, isotope: 'Nb-53', equation: 'S26+S27', energy: '1800' },
         { number: 54, isotope: 'Nb-54', equation: 'Mineable', energy: '' },
         { number: 55, isotope: 'Nb-55', equation: 'M23+Xc32', energy: '' },
-        { number: 56, isotope: 'Nb-56', equation: 'M22+Xc34', energy: '' }
+        { number: 56, isotope: 'Nb-56', equation: 'M22+Xc34', energy: '2300' }
     ],
     'Xk': [
         { number: 50, isotope: 'Xk-50', equation: 'S25+S25', energy: '1600' },
@@ -513,7 +513,7 @@ function showElementDetails(elementSymbol, elementColor) {
     // Add GIF for any element
     const gifContent = `
         <div class="element-gif">
-            <img src="./gifs/${elementSymbol}.gif" 
+            <img src="../gifs/${elementSymbol}.gif" 
                  type="image/gif"
                  accept="image/gif"
                  alt="Element ${elementSymbol} animation" 
