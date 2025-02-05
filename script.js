@@ -961,10 +961,10 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="roadmap-container">
                 <button class="close-btn">×</button>
                 
-                <div class="step-title">Step 1: Mineable Elements</div>
+                <div class="step-title">Step 1: Mineable Otoms</div>
                 ${generateMineableCards(sortedMineable)}
 
-                <div class="step-title">Step 2: Elements from Mineable Components</div>
+                <div class="step-title">Step 2: Otoms from Mineable Otoms</div>
                 ${generateStep2Cards(sortedStep2)}
 
                 ${generateIsotopeUsageTable()}
@@ -1071,7 +1071,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="input-group">
                         <label for="equation">Reaction Equation:</label>
-                        <input type="text" id="equation" required placeholder="e.g., H1+He2 or Mineable">
+                        <input type="text" id="equation" required placeholder="e.g., H1+He2 or ">
                     </div>
                     <div class="input-group">
                         <label for="energy">Energy Required:</label>

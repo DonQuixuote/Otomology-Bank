@@ -33,10 +33,6 @@
             </div>
             
             <!-- Resource Links -->
-            <a href="#" class="menu-item reaction" id="userInputButton">
-                Share Reaction
-                <span class="subtitle">Submit your discovery</span>
-            </a>
             <a href="#" class="menu-item roadmap" id="roadmapBtn">ROADMAP</a>
             <a href="https://swap.reservoir.tools/#/swap?chain=shape" class="menu-item faucet" target="_blank">
                 Trade Energy
@@ -96,37 +92,12 @@
         </div>
     </div>
 
-    <!-- Add the roadmap modal -->
-    <div id="roadmapModal" class="modal roadmap-modal">
-        <div class="modal-content roadmap-content">
-            <span class="close">&times;</span>
-            <h2>Isotope Creation Roadmap</h2>
-            <div class="roadmap-steps">
-                <section>
-                    <h3>Step 1: Mineable Elements</h3>
-                    <p>Start by collecting these mineable isotopes as your foundation:</p>
-                    <div class="mineable-list"></div>
-                </section>
-                
-                <section>
-                    <h3>Step 2: Direct Combinations</h3>
-                    <p>Create these isotopes using only mineable elements (sorted by energy cost):</p>
-                    <div class="direct-combinations"></div>
-                </section>
-                
-                <section>
-                    <h3>Step 3: Advanced Combinations</h3>
-                    <p>Create these isotopes using previously crafted elements:</p>
-                    <div class="advanced-combinations"></div>
-                </section>
-            </div>
-        </div>
-    </div>
-
     <button id="darkModeToggle" class="dark-mode-toggle">
         <span class="sun">☀️</span>
         <span class="moon">🌙</span>
     </button>
+
+    <div id="roadmapModal" class="modal"></div>
 
     <script src="script.js"></script>
 </body>
