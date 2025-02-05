@@ -496,14 +496,24 @@ function showElementDetails(elementSymbol, elementColor) {
                 <th>Isotope</th>
                 <th>Equation</th>
                 <th>Energy</th>
+                <th>Collected</th>
             </tr>
-            ${isotopes.map(isotope => `
-                <tr>
-                    <td>${isotope.isotope}</td>
-                    <td>${isotope.equation}</td>
-                    <td>${isotope.energy}</td>
-                </tr>
-            `).join('')}
+            ${isotopes.map(isotope => {
+                const collection = JSON.parse(localStorage.getItem('isotopeCollection'));
+                const isCollected = collection[elementSymbol]?.includes(isotope.isotope);
+                return `
+                    <tr>
+                        <td>${isotope.isotope}</td>
+                        <td>${isotope.equation}</td>
+                        <td>${isotope.energy}</td>
+                        <td>
+                            <input type="checkbox" 
+                                   ${isCollected ? 'checked' : ''}
+                                   onclick="userCollection.toggleIsotope('${elementSymbol}', '${isotope.isotope}')">
+                        </td>
+                    </tr>
+                `;
+            }).join('')}
         </table>
         <div class="energy-total">
             Total Energy Required: ${totalEnergy.toLocaleString()}
@@ -511,16 +521,16 @@ function showElementDetails(elementSymbol, elementColor) {
     `;
 
     // Add GIF for any element
-    const gifContent = `
-        <div class="element-gif">
-            <img src="../gifs/${elementSymbol}.gif" 
-                 type="image/gif"
-                 accept="image/gif"
-                 alt="Element ${elementSymbol} animation" 
-                 onerror="console.log('Failed to load GIF:', this.src); this.parentElement.style.display='none'"
-                 onload="console.log('Successfully loaded:', this.src)">
-        </div>
-    `;
+        const gifContent = `
+            <div class="element-gif">
+                <img src="https://donquixuote.github.io/Otomology-Bank/gifs/${elementSymbol.toLowerCase()}.GIF" 
+                     type="image/gif"
+                     accept="image/gif"
+                     alt="Element ${elementSymbol} animation" 
+                     onerror="console.log('Failed to load GIF:', this.src); this.parentElement.style.display='none'"
+                     onload="console.log('Successfully loaded:', this.src)">
+            </div>
+        `;
 
     modal.innerHTML = `
         <div class="modal-content" style="background-color: #E0D0CD">
@@ -630,6 +640,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Remove this line that references the Share Reaction button
+    const submitButton = document.querySelector('.menu-item.reaction');
+    if (submitButton) {
+        submitButton.remove();
+    }
+
+    // Keep all other functionality
     const roadmapBtn = document.getElementById('roadmapBtn');
     const roadmapModal = document.getElementById('roadmapModal');
     const closeButtons = document.querySelectorAll('.close');
@@ -951,10 +968,10 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="roadmap-container">
                 <button class="close-btn">×</button>
                 
-                <div class="step-title">Step 1: Mineable Elements</div>
+                <div class="step-title">Step 1: Mineable Otoms</div>
                 ${generateMineableCards(sortedMineable)}
 
-                <div class="step-title">Step 2: Elements from Mineable Components</div>
+                <div class="step-title">Step 2: Otoms from Mineable Otoms</div>
                 ${generateStep2Cards(sortedStep2)}
 
                 ${generateIsotopeUsageTable()}
@@ -989,18 +1006,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Add submit changes button
-    const submitButton = document.createElement('a');
-    submitButton.href = 'https://x.com/Donquixuote';
-    submitButton.target = '_blank';
-    submitButton.className = 'submit-changes-btn';
-    submitButton.innerHTML = `
-        Submit Changes
-        <div class="subtitle">via X</div>
-    `;
-    
-    // Add the button to the slide menu
-    slideMenu.appendChild(submitButton);
+   
 
     // Add the CSS for the button
     const style = document.createElement('style');
@@ -1036,335 +1042,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
-
-    // Instead, get the new menu button we created
-    const userInputButton = document.querySelector('.menu-item.reaction');
-
-    // Create and add the user input modal HTML
-    const userInputModal = document.createElement('div');
-    userInputModal.className = 'user-input-modal';
-    userInputModal.innerHTML = `
-        <div class="user-input-content">
-            <button class="close-btn">×</button>
-            <div class="modal-tabs">
-                <button class="tab-btn active" data-tab="submit">Submit Reaction</button>
-                <button class="tab-btn" data-tab="forum">View Submissions</button>
-            </div>
-            
-            <div class="tab-content submit-tab active">
-                <h2>Share Your Reaction Discovery</h2>
-                <form id="reactionForm">
-                    <div class="input-group">
-                        <label for="username">Your Username:</label>
-                        <input type="text" id="username" required placeholder="Enter your username">
-                    </div>
-                    <div class="input-group">
-                        <label for="elementSymbol">Element Symbol:</label>
-                        <input type="text" id="elementSymbol" required placeholder="e.g., H, He, Li">
-                    </div>
-                    <div class="input-group">
-                        <label for="isotopeNumber">Isotope Number:</label>
-                        <input type="number" id="isotopeNumber" required placeholder="e.g., 1, 2, 3">
-                    </div>
-                    <div class="input-group">
-                        <label for="equation">Reaction Equation:</label>
-                        <input type="text" id="equation" required placeholder="e.g., H1+He2 or Mineable">
-                    </div>
-                    <div class="input-group">
-                        <label for="energy">Energy Required:</label>
-                        <input type="number" id="energy" required placeholder="Energy value">
-                    </div>
-                    <button type="submit" class="submit-btn">Submit Reaction</button>
-                </form>
-                <div id="submissionMessage" class="submission-message"></div>
-            </div>
-
-            <div class="tab-content forum-tab">
-                <h2>Community Submissions</h2>
-                <div class="submissions-list">
-                    <!-- Sample submissions -->
-                    <div class="submission-card">
-                        <div class="submission-header">
-                            <span class="username">JohnDoe</span>
-                            <span class="timestamp">2 hours ago</span>
-                        </div>
-                        <div class="submission-content">
-                            <div class="reaction-details">
-                                <span class="element">He-3</span>
-                                <span class="equation">Li2+Be4</span>
-                                <span class="energy">1200 energy</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(userInputModal);
-
-    // Add styles for the user input components
-    style.textContent += `
-        .user-input-btn {
-            display: block;
-            margin: 10px;
-            padding: 8px 15px;
-            background: #9C27B0;  /* Purple color */
-            color: white;
-            border: none;
-            border-radius: 6px;
-            text-align: center;
-            transition: background-color 0.2s;
-            cursor: pointer;
-            font-size: 14px;
-            position: fixed;  /* Changed from absolute to fixed */
-            top: 20px;       /* Position from top */
-            right: 20px;     /* Position from right */
-            width: auto;     /* Let the width be determined by content */
-            max-width: 200px;
-            z-index: 100;    /* Ensure it's above other elements */
-        }
-
-        .user-input-btn:hover {
-            background: #7B1FA2;
-        }
-
-        .user-input-btn .subtitle {
-            font-size: 10px;
-            opacity: 0.8;
-            margin-top: 2px;
-        }
-
-        .user-input-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .user-input-content {
-            background: #2a2a2a;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            color: white;
-        }
-
-        .modal-tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #444;
-        }
-
-        .tab-btn {
-            padding: 10px 20px;
-            background: none;
-            border: none;
-            color: #888;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-
-        .tab-btn.active {
-            color: #4CAF50;
-            border-bottom: 2px solid #4CAF50;
-            margin-bottom: -2px;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #4CAF50;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #444;
-            border-radius: 4px;
-            background: #333;
-            color: white;
-        }
-
-        .submissions-list {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .submission-card {
-            background: #333;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        .submission-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            color: #888;
-            font-size: 14px;
-        }
-
-        .username {
-            color: #4CAF50;
-            font-weight: bold;
-        }
-
-        .reaction-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #2a2a2a;
-            padding: 10px;
-            border-radius: 4px;
-        }
-
-        .element {
-            color: #4CAF50;
-            font-weight: bold;
-        }
-
-        .equation {
-            color: #fff;
-        }
-
-        .energy {
-            color: #ffd700;
-        }
-
-        .submission-message {
-            margin-top: 15px;
-            text-align: center;
-            color: #4CAF50;
-            display: none;
-        }
-    `;
-
-    // Add event listeners for the tabs
-    const tabButtons = userInputModal.querySelectorAll('.tab-btn');
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            userInputModal.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
-            button.classList.add('active');
-            const tabName = button.dataset.tab;
-            userInputModal.querySelector(`.${tabName}-tab`).classList.add('active');
-        });
-    });
-
-    // Add event listeners for the modal
-    userInputButton.addEventListener('click', () => {
-        userInputModal.style.display = 'flex';
-        slideMenu.classList.remove('active');
-    });
-
-    userInputModal.querySelector('.close-btn').addEventListener('click', () => {
-        userInputModal.style.display = 'none';
-    });
-
-    userInputModal.addEventListener('click', (e) => {
-        if (e.target === userInputModal) {
-            userInputModal.style.display = 'none';
-        }
-    });
-
-    // Handle form submission
-    const reactionForm = document.getElementById('reactionForm');
-    reactionForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        // Instead of trying to submit directly, redirect to GitHub issue creation
-        const formData = {
-            username: document.getElementById('username').value,
-            elementSymbol: document.getElementById('elementSymbol').value,
-            isotopeNumber: document.getElementById('isotopeNumber').value,
-            equation: document.getElementById('equation').value,
-            energy: document.getElementById('energy').value
-        };
-
-        const issueTitle = `New Reaction: ${formData.elementSymbol}-${formData.isotopeNumber}`;
-        const issueBody = `
-**Submitted by:** ${formData.username}
-**Element:** ${formData.elementSymbol}-${formData.isotopeNumber}
-**Equation:** ${formData.equation}
-**Energy Required:** ${formData.energy}
-
----
-*This issue was automatically created from the Otomology Bank reaction submission form.*
-        `;
-
-        const githubIssueURL = `https://github.com/Donquixuote/Otomology-Bank/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
-        
-        window.open(githubIssueURL, '_blank');
-    });
-
-    // Update the loadSubmissions function to use the read-only method
-    async function loadSubmissions() {
-        try {
-            const response = await fetch('https://api.github.com/repos/Donquixuote/Otomology-Bank/issues?state=open');
-            const issues = await response.json();
-            
-            const submissionsList = document.querySelector('.submissions-list');
-            submissionsList.innerHTML = ''; // Clear existing submissions
-
-            issues.forEach(issue => {
-                if (issue.title.startsWith('New Reaction:')) {
-                    // Parse the issue body to extract information
-                    const bodyLines = issue.body.split('\n');
-                    const element = bodyLines.find(line => line.startsWith('**Element:**'))?.replace('**Element:**', '').trim();
-                    const equation = bodyLines.find(line => line.startsWith('**Equation:**'))?.replace('**Equation:**', '').trim();
-                    const energy = bodyLines.find(line => line.startsWith('**Energy Required:**'))?.replace('**Energy Required:**', '').trim();
-
-                    const submissionCard = document.createElement('div');
-                    submissionCard.className = 'submission-card';
-                    submissionCard.innerHTML = `
-                        <div class="submission-header">
-                            <span class="username">${issue.user.login}</span>
-                            <span class="timestamp">${new Date(issue.created_at).toLocaleDateString()}</span>
-                        </div>
-                        <div class="submission-content">
-                            <div class="reaction-details">
-                                <span class="element">${element}</span>
-                                <span class="equation">${equation}</span>
-                                <span class="energy">${energy}</span>
-                                <a href="${issue.html_url}" target="_blank" class="view-issue">View Details →</a>
-                            </div>
-                        </div>
-                    `;
-                    submissionsList.appendChild(submissionCard);
-                }
-            });
-        } catch (error) {
-            console.error('Error loading submissions:', error);
-            const submissionsList = document.querySelector('.submissions-list');
-            submissionsList.innerHTML = '<div class="error-message">Unable to load submissions at this time.</div>';
-        }
-    }
-
-    // Keep the event listener for loading submissions
-    document.querySelector('[data-tab="forum"]').addEventListener('click', loadSubmissions);
 
     // Find the style section for the element text colors and update them
     style.textContent += `
@@ -1447,4 +1124,96 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('darkMode', null);
         }
     });
+});
+
+// Add this near the top of your script
+const userCollection = {
+    init() {
+        if (!localStorage.getItem('isotopeCollection')) {
+            localStorage.setItem('isotopeCollection', JSON.stringify({}));
+        }
+    },
+
+    toggleIsotope(elementSymbol, isotopeName) {
+        const collection = JSON.parse(localStorage.getItem('isotopeCollection'));
+        if (!collection[elementSymbol]) {
+            collection[elementSymbol] = [];
+        }
+        
+        const index = collection[elementSymbol].indexOf(isotopeName);
+        if (index === -1) {
+            collection[elementSymbol].push(isotopeName);
+        } else {
+            collection[elementSymbol].splice(index, 1);
+        }
+        
+        localStorage.setItem('isotopeCollection', JSON.stringify(collection));
+        
+        // Check if all isotopes for this element are collected
+        const elementIsotopes = isotopeEquations[elementSymbol] || [];
+        const isComplete = elementIsotopes.length === collection[elementSymbol].length;
+        
+        // Find the element on the periodic table using data attribute
+        const elements = document.querySelectorAll('.element');
+        elements.forEach(element => {
+            const symbol = element.querySelector('.symbol');
+            if (symbol && symbol.textContent === elementSymbol) {
+                if (isComplete) {
+                    element.classList.add('completed');
+                } else {
+                    element.classList.remove('completed');
+                }
+            }
+        });
+        
+        this.updateProgress();
+    },
+
+    updateProgress() {
+        const collection = JSON.parse(localStorage.getItem('isotopeCollection'));
+        let totalIsotopes = 0;
+        let collectedIsotopes = 0;
+        
+        Object.keys(isotopeEquations).forEach(element => {
+            totalIsotopes += isotopeEquations[element].length;
+            collectedIsotopes += (collection[element] || []).length;
+        });
+        
+        const percentage = Math.round((collectedIsotopes / totalIsotopes) * 100);
+        
+        const progressPath = document.querySelector('.progress-circle path.progress');
+        const percentageText = document.querySelector('.progress-text .percentage');
+        
+        if (progressPath && percentageText) {
+            progressPath.style.strokeDasharray = `${percentage}, 100`;
+            percentageText.textContent = `${percentage}%`;
+        }
+    }
+};
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    userCollection.init();
+    
+    // Check initial state of all elements
+    const collection = JSON.parse(localStorage.getItem('isotopeCollection'));
+    Object.keys(isotopeEquations).forEach(elementSymbol => {
+        const elementIsotopes = isotopeEquations[elementSymbol] || [];
+        const collectedIsotopes = collection[elementSymbol] || [];
+        const isComplete = elementIsotopes.length === collectedIsotopes.length;
+        
+        const elements = document.querySelectorAll('.element');
+        elements.forEach(element => {
+            const symbol = element.querySelector('.symbol');
+            if (symbol && symbol.textContent === elementSymbol) {
+                if (isComplete) {
+                    element.classList.add('completed');
+                } else {
+                    element.classList.remove('completed');
+                }
+            }
+        });
+    });
+    
+    userCollection.updateProgress();
 });

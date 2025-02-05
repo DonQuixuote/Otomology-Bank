@@ -176,6 +176,10 @@ h1 {
 .modal-content h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: black !important;  /* Force black color */
+    border: none !important;  /* Remove any borders */
+    background: none !important;  /* Remove any background */
+    text-shadow: none !important;  /* Remove any text shadows */
 }
 
 .isotope-table th,
@@ -378,31 +382,31 @@ h2 {
     margin-top: 4px;
 }
 
+/* Style menu section labels with borders */
 .menu-divider {
-    margin: 20px 0;
     text-align: center;
-    position: relative;
-    padding: 10px 0;
+    margin: 15px 0;
 }
 
 .menu-divider span {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 0 10px;
-    color: #333;
-    font-weight: bold;
-    font-size: 16px;
-    position: relative;
-    z-index: 1;
+    border: 1px solid black;
+    padding: 5px 15px;
+    border-radius: 4px;
+    display: inline-block;
 }
 
-.menu-divider:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: #ccc;
+/* Remove all divider lines */
+.menu-divider::before {
+    display: none;
+}
+
+.slide-menu hr {
+    display: none;
+}
+
+/* Dark mode */
+body.dark-mode .menu-divider span {
+    border-color: black;
 }
 
 .roadmap-modal .modal-content {
@@ -854,4 +858,189 @@ body.dark-mode .modal-content {
 body.dark-mode .isotope-table th {
     background-color: #333;  /* Keep the original header background */
     color: #4CAF50;  /* Keep the original green color */
+}
+
+/* Specifically remove dark mode effects */
+body.dark-mode .modal-content h2 {
+    color: black !important;
+    border: none !important;
+    background: none !important;
+    text-shadow: none !important;
+}
+
+/* Remove borders from main page headers */
+h1, h2 {
+    border: none !important;
+    background: none !important;
+}
+
+/* Also ensure dark mode doesn't add borders */
+body.dark-mode h1,
+body.dark-mode h2 {
+    border: none !important;
+    background: none !important;
+}
+
+/* Keep other header styles but remove borders */
+.periodic-title,
+.universe-title {
+    border: none !important;
+    background: none !important;
+}
+
+/* Style for menu dividers */
+.menu-divider {
+    border: none !important;
+}
+
+.menu-divider span {
+    border: none !important;
+    background: none !important;
+}
+
+/* Dark mode specific styles */
+body.dark-mode .menu-divider {
+    border: none !important;
+}
+
+body.dark-mode .menu-divider span {
+    border: none !important;
+    background: none !important;
+}
+
+/* Custom checkbox styling */
+.isotope-table input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #4CAF50;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+/* Checkbox hover effect */
+.isotope-table input[type="checkbox"]:hover {
+    border-color: #45a049;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* Checkbox checked state */
+.isotope-table input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+/* Checkmark symbol */
+.isotope-table input[type="checkbox"]:checked::after {
+    content: "✓";
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .isotope-table input[type="checkbox"] {
+    border-color: #45a049;
+}
+
+body.dark-mode .isotope-table input[type="checkbox"]:checked {
+    background-color: #45a049;
+}
+
+/* Style for completed elements */
+.element.completed {
+    position: relative;  /* For checkmark positioning */
+}
+
+.element.completed::before {
+    content: "✓";
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: #00ff00;
+    opacity: 0.7;  /* Makes it translucent */
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 
+        1px 1px 0 rgba(0, 0, 0, 0.7),
+        -1px -1px 0 rgba(0, 0, 0, 0.7),
+        1px -1px 0 rgba(0, 0, 0, 0.7),
+        -1px 1px 0 rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+/* Optional hover effect to make it more visible on hover */
+.element.completed:hover::before {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+/* Dark mode adjustment */
+body.dark-mode .element.completed::before {
+    color: #4CAF50;
+}
+
+.progress-tracker {
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 200px;
+}
+
+.progress-circle {
+    position: relative;
+    width: 100%;
+}
+
+.progress-circle svg {
+    transform: rotate(-90deg);
+    width: 100%;
+}
+
+.progress-circle path {
+    stroke-linecap: round;
+}
+
+.progress-circle path.progress {
+    stroke-dasharray: 0, 100;
+    transition: stroke-dasharray 0.5s ease;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.progress-text .percentage {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.progress-text .label {
+    display: block;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .progress-circle path.progress {
+    stroke: #45a049;
+}
+
+body.dark-mode .progress-text .percentage {
+    color: #45a049;
 } 
