@@ -190,7 +190,7 @@ const isotopeEquations = {
         { number: 35, isotope: 'Fj-35', equation: 'Pm17+Pm18', energy: '1050' },
         { number: 36, isotope: 'Fj-36', equation: 'Pm18+Pm18', energy: '1100' },
         { number: 37, isotope: 'Fj-37', equation: 'Mineable', energy: '' },
-        { number: 38, isotope: 'Fj-38', equation: 'Pm19+Pm19', energy: '2000' },
+        { number: 38, isotope: 'Fj-38', equation: 'Dx15+M23', energy: '1100' },
         { number: 39, isotope: 'Fj-39', equation: 'Ju2+D37', energy: '940' },
         { number: 40, isotope: 'Fj-40', equation: 'Ju3+D37', energy: '1000' },
         { number: 41, isotope: 'Fj-41', equation: 'Af9+Zq32', energy: '1200' }
@@ -216,14 +216,14 @@ const isotopeEquations = {
         { number: 45, isotope: 'C-45', equation: 'Xl11+Xc34', energy: '1400' }
     ],
     'E': [
-        { number: 40, isotope: 'E-40', equation: 'Dx15+O37', energy: '2100' },
+        { number: 40, isotope: 'E-40', equation: 'Dx15+S25', energy: '1150' },
         { number: 41, isotope: 'E-41', equation: 'Pm17+Pt24', energy: '1600' },
         { number: 42, isotope: 'E-42', equation: 'Cq5+Fj37', energy: '750' },
-        { number: 43, isotope: 'E-43', equation: 'Pm18+Pt24', energy: '1700' },
-        { number: 44, isotope: 'E-44', equation: 'Pm19+Pt24', energy: '1800' },
-        { number: 45, isotope: 'E-45', equation: 'Pm19+Pt25', energy: '1900' },
-        { number: 46, isotope: 'E-46', equation: 'D37+Xl11', energy: '1100' },
-        { number: 47, isotope: 'E-47', equation: 'D38+Xl11', energy: '1200' },
+        { number: 43, isotope: 'E-43', equation: 'Pm19+Pt24', energy: '2500' },
+        { number: 44, isotope: 'E-44', equation: 'Pm19+Pt25', energy: '1900' },
+        { number: 45, isotope: 'E-45', equation: 'Zq32+Zz13', energy: '1200' },
+        { number: 46, isotope: 'E-46', equation: 'Af9+D37', energy: '1350' },
+        { number: 47, isotope: 'E-47', equation: 'Fw25+M22', energy: '1900' },
         { number: 48, isotope: 'E-48', equation: 'M23+Pt25', energy: '1400' }
     ],
     'A': [
@@ -238,15 +238,15 @@ const isotopeEquations = {
         { number: 50, isotope: 'A-50', equation: 'D39+Xl11', energy: '1400' }
     ],
     'Aw': [
-        { number: 44, isotope: 'Aw-44', equation: 'Dx15+O37', energy: '1750' },
-        { number: 45, isotope: 'Aw-45', equation: 'Dx15+O38', energy: '1800' },
-        { number: 46, isotope: 'Aw-46', equation: 'Dx16+O38', energy: '1900' },
-        { number: 47, isotope: 'Aw-47', equation: 'Dx17+O38', energy: '2000' },
-        { number: 48, isotope: 'Aw-48', equation: 'Dx17+O39', energy: '2100' },
-        { number: 49, isotope: 'Aw-49', equation: 'Dx18+O39', energy: '2200' },
+        { number: 44, isotope: 'Aw-44', equation: 'Fj34+Pq10', energy: '950' },
+        { number: 45, isotope: 'Aw-45', equation: 'Dx15+Xc30', energy: '2400' },
+        { number: 46, isotope: 'Aw-46', equation: 'Dx16+Xc30', energy: '2400' },
+        { number: 47, isotope: 'Aw-47', equation: 'Dx17+Xc30', energy: '2500' },
+        { number: 48, isotope: 'Aw-48', equation: 'Dx17+Xc31', energy: '2100' },
+        { number: 49, isotope: 'Aw-49', equation: 'Dx12+Xc32', energy: '2200' },
         { number: 50, isotope: 'Aw-50', equation: 'Mineable', energy: '' },
-        { number: 51, isotope: 'Aw-51', equation: 'Dx19+O40', energy: '2400' },
-        { number: 52, isotope: 'Aw-52', equation: 'Dx19+O41', energy: '2500' }
+        { number: 51, isotope: 'Aw-51', equation: 'Dx12+Xc34', energy: '2400' },
+        { number: 52, isotope: 'Aw-52', equation: 'Dx18+Xc34', energy: '2500' }
     ],
     'Oc': [
         { number: 46, isotope: 'Oc-46', equation: 'Ju1+Aw45', energy: '1100' },
@@ -254,21 +254,21 @@ const isotopeEquations = {
         { number: 48, isotope: 'Oc-48', equation: 'Ju2+Aw46', energy: '1300' },
         { number: 49, isotope: 'Oc-49', equation: 'Ju3+Aw46', energy: '1400' },
         { number: 50, isotope: 'Oc-50', equation: 'Pt25+Pt25', energy: '1650' },
-        { number: 51, isotope: 'Oc-51', equation: 'Cq5+Oc46', energy: '786' },
-        { number: 52, isotope: 'Oc-52', equation: 'Cq6+Oc46', energy: '800' },
-        { number: 53, isotope: 'Oc-53', equation: 'Cq6+Oc47', energy: '850' },
-        { number: 54, isotope: 'Oc-54', equation: 'Cq7+Oc47', energy: '900' }
+        { number: 51, isotope: 'Oc-51', equation: 'Ju1+Aw50', energy: '1250' },
+        { number: 52, isotope: 'Oc-52', equation: 'Ju2+Aw50', energy: '1250' },
+        { number: 53, isotope: 'Oc-53', equation: 'Ju3+Aw50', energy: '1250' },
+        { number: 54, isotope: 'Oc-54', equation: 'Ju3+Aw51', energy: '1250' }
     ],
     'Nb': [
         { number: 47, isotope: 'Nb-47', equation: 'Zz13+Fj34', energy: '1250' },
         { number: 48, isotope: 'Nb-48', equation: 'Zz14+Fj34', energy: '1300' },
         { number: 49, isotope: 'Nb-49', equation: 'Zz14+Fj35', energy: '1350' },
         { number: 50, isotope: 'Nb-50', equation: 'Zz15+Fj35', energy: '1400' },
-        { number: 51, isotope: 'Nb-51', equation: 'S25+S26', energy: '1600' },
-        { number: 52, isotope: 'Nb-52', equation: 'S25+S27', energy: '1700' },
-        { number: 53, isotope: 'Nb-53', equation: 'S26+S27', energy: '1800' },
+        { number: 51, isotope: 'Nb-51', equation: 'Pt25+S26', energy: '1700' },
+        { number: 52, isotope: 'Nb-52', equation: 'Pt26+S26', energy: '2200' },
+        { number: 53, isotope: 'Nb-53', equation: 'D37+Dx16', energy: '2000' },
         { number: 54, isotope: 'Nb-54', equation: 'Mineable', energy: '' },
-        { number: 55, isotope: 'Nb-55', equation: 'M23+Xc32', energy: '' },
+        { number: 55, isotope: 'Nb-55', equation: 'M23+Xc32', energy: '1800' },
         { number: 56, isotope: 'Nb-56', equation: 'M22+Xc34', energy: '2300' }
     ],
     'Xk': [
@@ -1171,22 +1171,33 @@ const userCollection = {
 
     updateProgress() {
         const collection = JSON.parse(localStorage.getItem('isotopeCollection'));
+        let totalCollected = 0;
         let totalIsotopes = 0;
-        let collectedIsotopes = 0;
-        
+
+        // Calculate totals
         Object.keys(isotopeEquations).forEach(element => {
-            totalIsotopes += isotopeEquations[element].length;
-            collectedIsotopes += (collection[element] || []).length;
+            const elementIsotopes = isotopeEquations[element] || [];
+            const collectedIsotopes = collection[element] || [];
+            totalCollected += collectedIsotopes.length;
+            totalIsotopes += elementIsotopes.length;
         });
+
+        // Update the progress circle
+        const percentage = document.querySelector('.percentage');
+        const label = document.querySelector('.label');
+        const progressPath = document.querySelector('.progress');
         
-        const percentage = Math.round((collectedIsotopes / totalIsotopes) * 100);
-        
-        const progressPath = document.querySelector('.progress-circle path.progress');
-        const percentageText = document.querySelector('.progress-text .percentage');
-        
-        if (progressPath && percentageText) {
-            progressPath.style.strokeDasharray = `${percentage}, 100`;
-            percentageText.textContent = `${percentage}%`;
+        if (percentage && label && progressPath) {
+            const percentValue = (totalCollected / totalIsotopes) * 100;
+            percentage.textContent = `${percentValue.toFixed(1)}%`;
+            label.textContent = `${totalCollected}/${totalIsotopes} Isotopes`;
+            
+            // Calculate the SVG path for the circle
+            const radius = 15.9155; // This matches your SVG path
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference - (percentValue / 100) * circumference;
+            progressPath.style.strokeDasharray = `${circumference} ${circumference}`;
+            progressPath.style.strokeDashoffset = offset;
         }
     }
 };
