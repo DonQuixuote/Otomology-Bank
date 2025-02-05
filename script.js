@@ -496,14 +496,24 @@ function showElementDetails(elementSymbol, elementColor) {
                 <th>Isotope</th>
                 <th>Equation</th>
                 <th>Energy</th>
+                <th>Collected</th>
             </tr>
-            ${isotopes.map(isotope => `
-                <tr>
-                    <td>${isotope.isotope}</td>
-                    <td>${isotope.equation}</td>
-                    <td>${isotope.energy}</td>
-                </tr>
-            `).join('')}
+            ${isotopes.map(isotope => {
+                const collection = JSON.parse(localStorage.getItem('isotopeCollection'));
+                const isCollected = collection[elementSymbol]?.includes(isotope.isotope);
+                return `
+                    <tr>
+                        <td>${isotope.isotope}</td>
+                        <td>${isotope.equation}</td>
+                        <td>${isotope.energy}</td>
+                        <td>
+                            <input type="checkbox" 
+                                   ${isCollected ? 'checked' : ''}
+                                   onclick="userCollection.toggleIsotope('${elementSymbol}', '${isotope.isotope}')">
+                        </td>
+                    </tr>
+                `;
+            }).join('')}
         </table>
         <div class="energy-total">
             Total Energy Required: ${totalEnergy.toLocaleString()}
@@ -990,14 +1000,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add submit changes button
-    const submitButton = document.createElement('a');
-    submitButton.href = 'https://x.com/Donquixuote';
-    submitButton.target = '_blank';
-    submitButton.className = 'submit-changes-btn';
-    submitButton.innerHTML = `
-        Submit Changes
-        <div class="subtitle">via X</div>
-    `;
+  
     
     // Add the button to the slide menu
     slideMenu.appendChild(submitButton);
@@ -1447,4 +1450,96 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('darkMode', null);
         }
     });
+});
+
+// Add this near the top of your script
+const userCollection = {
+    init() {
+        if (!localStorage.getItem('isotopeCollection')) {
+            localStorage.setItem('isotopeCollection', JSON.stringify({}));
+        }
+    },
+
+    toggleIsotope(elementSymbol, isotopeName) {
+        const collection = JSON.parse(localStorage.getItem('isotopeCollection'));
+        if (!collection[elementSymbol]) {
+            collection[elementSymbol] = [];
+        }
+        
+        const index = collection[elementSymbol].indexOf(isotopeName);
+        if (index === -1) {
+            collection[elementSymbol].push(isotopeName);
+        } else {
+            collection[elementSymbol].splice(index, 1);
+        }
+        
+        localStorage.setItem('isotopeCollection', JSON.stringify(collection));
+        
+        // Check if all isotopes for this element are collected
+        const elementIsotopes = isotopeEquations[elementSymbol] || [];
+        const isComplete = elementIsotopes.length === collection[elementSymbol].length;
+        
+        // Find the element on the periodic table using data attribute
+        const elements = document.querySelectorAll('.element');
+        elements.forEach(element => {
+            const symbol = element.querySelector('.symbol');
+            if (symbol && symbol.textContent === elementSymbol) {
+                if (isComplete) {
+                    element.classList.add('completed');
+                } else {
+                    element.classList.remove('completed');
+                }
+            }
+        });
+        
+        this.updateProgress();
+    },
+
+    updateProgress() {
+        const collection = JSON.parse(localStorage.getItem('isotopeCollection'));
+        let totalIsotopes = 0;
+        let collectedIsotopes = 0;
+        
+        Object.keys(isotopeEquations).forEach(element => {
+            totalIsotopes += isotopeEquations[element].length;
+            collectedIsotopes += (collection[element] || []).length;
+        });
+        
+        const percentage = Math.round((collectedIsotopes / totalIsotopes) * 100);
+        
+        const progressPath = document.querySelector('.progress-circle path.progress');
+        const percentageText = document.querySelector('.progress-text .percentage');
+        
+        if (progressPath && percentageText) {
+            progressPath.style.strokeDasharray = `${percentage}, 100`;
+            percentageText.textContent = `${percentage}%`;
+        }
+    }
+};
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    userCollection.init();
+    
+    // Check initial state of all elements
+    const collection = JSON.parse(localStorage.getItem('isotopeCollection'));
+    Object.keys(isotopeEquations).forEach(elementSymbol => {
+        const elementIsotopes = isotopeEquations[elementSymbol] || [];
+        const collectedIsotopes = collection[elementSymbol] || [];
+        const isComplete = elementIsotopes.length === collectedIsotopes.length;
+        
+        const elements = document.querySelectorAll('.element');
+        elements.forEach(element => {
+            const symbol = element.querySelector('.symbol');
+            if (symbol && symbol.textContent === elementSymbol) {
+                if (isComplete) {
+                    element.classList.add('completed');
+                } else {
+                    element.classList.remove('completed');
+                }
+            }
+        });
+    });
+    
+    userCollection.updateProgress();
 });

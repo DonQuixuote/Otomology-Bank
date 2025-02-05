@@ -906,4 +906,141 @@ body.dark-mode .menu-divider {
 body.dark-mode .menu-divider span {
     border: none !important;
     background: none !important;
+}
+
+/* Custom checkbox styling */
+.isotope-table input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #4CAF50;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+/* Checkbox hover effect */
+.isotope-table input[type="checkbox"]:hover {
+    border-color: #45a049;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* Checkbox checked state */
+.isotope-table input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+/* Checkmark symbol */
+.isotope-table input[type="checkbox"]:checked::after {
+    content: "✓";
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .isotope-table input[type="checkbox"] {
+    border-color: #45a049;
+}
+
+body.dark-mode .isotope-table input[type="checkbox"]:checked {
+    background-color: #45a049;
+}
+
+/* Style for completed elements */
+.element.completed {
+    position: relative;  /* For checkmark positioning */
+}
+
+.element.completed::before {
+    content: "✓";
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: #00ff00;
+    opacity: 0.7;  /* Makes it translucent */
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 
+        1px 1px 0 rgba(0, 0, 0, 0.7),
+        -1px -1px 0 rgba(0, 0, 0, 0.7),
+        1px -1px 0 rgba(0, 0, 0, 0.7),
+        -1px 1px 0 rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+/* Optional hover effect to make it more visible on hover */
+.element.completed:hover::before {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+/* Dark mode adjustment */
+body.dark-mode .element.completed::before {
+    color: #4CAF50;
+}
+
+.progress-tracker {
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 200px;
+}
+
+.progress-circle {
+    position: relative;
+    width: 100%;
+}
+
+.progress-circle svg {
+    transform: rotate(-90deg);
+    width: 100%;
+}
+
+.progress-circle path {
+    stroke-linecap: round;
+}
+
+.progress-circle path.progress {
+    stroke-dasharray: 0, 100;
+    transition: stroke-dasharray 0.5s ease;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.progress-text .percentage {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.progress-text .label {
+    display: block;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .progress-circle path.progress {
+    stroke: #45a049;
+}
+
+body.dark-mode .progress-text .percentage {
+    color: #45a049;
 } 
