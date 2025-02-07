@@ -397,7 +397,9 @@ const isotopeEquations = {
         { number: 74, isotope: 'Qi-74', equation: 'M20+Nb54', energy: '3000' },
         { number: 75, isotope: 'Qi-75', equation: 'Pt25+Aw50', energy: '2550' },
         { number: 76, isotope: 'Qi-76', equation: 'M22+Nb54', energy: '3100' },
-        { number: 77, isotope: 'Qi-77', equation: 'M23+Nb55', energy: '2213' }
+        { number: 77, isotope: 'Qi-77', equation: 'M23+Nb54', energy: '2213' },
+        { number: 78, isotope: 'Qi-78', equation: 'M23+Nb55', energy: '2213' }
+
     ],
     'Xy': [
         { number: 69, isotope: 'Xy-69', equation: 'Pt22+Nb47', energy: '2040' },
@@ -413,6 +415,7 @@ const isotopeEquations = {
         { number: 79, isotope: 'Xy-79', equation: 'Fw25+Nb54', energy: '2400' }
     ],
     'Gq': [
+        { number: 71, isotope: 'Gq-71', equation: 'Dx14+Hb57', energy: '1750' },
         { number: 72, isotope: 'Gq-72', equation: 'Dx15+Hb57', energy: '1750' },
         { number: 73, isotope: 'Gq-73', equation: 'Dx16+Hb57', energy: '2550' },
         { number: 74, isotope: 'Gq-74', equation: 'Xc30+A44', energy: '3450' },
