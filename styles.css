@@ -122,15 +122,15 @@ h1 {
 }
 
 .modal-content {
-    margin: 15% auto;
+    background-color: #2a2a2a;
+    margin: 5% auto;
     padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    width: 80%;
-    max-width: 900px;
+    border: 1px solid #888;
+    width: 90%;  /* Increased from default */
+    max-width: 800px;  /* Added max-width for larger screens */
+    border-radius: 10px;
     position: relative;
-    border-radius: 15px;
-    backdrop-filter: blur(8px);
-    text-align: center;
+    color: white;
 }
 
 .element-details {
@@ -198,9 +198,42 @@ h1 {
     position: absolute;
     right: 20px;
     top: 15px;
+    width: 32px;
+    height: 32px;
+    background: #2fe0d2;
+    color: white;
+    border: none;
+    border-radius: 50%;  /* Makes it circular */
     font-size: 24px;
+    line-height: 24px;
     cursor: pointer;
-    color: #666;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.close:hover {
+    background: #41a0b1;
+    transform: rotate(90deg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.close:active {
+    transform: rotate(90deg) scale(0.95);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.close svg {
+    width: 24px;
+    height: 24px;
+    fill: white;  /* Makes the X icon white */
+}
+
+/* Ensure proper positioning in modal */
+.modal-content {
+    position: relative;  /* For absolute positioning of close button */
 }
 
 #isotopes {
@@ -372,6 +405,15 @@ h2 {
 
 .menu-item.reaction:hover {
     background-color: #626063;
+}
+
+.menu-item.reaction-log {
+    background-color: #4CAF50; /* Green color */
+    position: relative;
+}
+
+.menu-item.reaction-log:hover {
+    background-color: #45a049;
 }
 
 .menu-item .subtitle {
@@ -1043,4 +1085,368 @@ body.dark-mode .progress-circle path.progress {
 
 body.dark-mode .progress-text .percentage {
     color: #45a049;
+}
+
+.reaction-form {
+    width: 100%;
+    max-width: 600px;  /* Added max-width */
+    margin: 0 auto;  /* Center the form */
+    padding: 20px 0;
+}
+
+.isotope-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.isotope-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #333;
+    color: white;
+}
+
+.simulate-btn {
+    display: block;  /* Makes the button a block element */
+    margin: 20px auto;  /* Centers the button with auto margins */
+    background: #4CAF50;
+    color: white;
+    padding: 12px 24px;  /* Added more horizontal padding */
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: fit-content;  /* Makes the button width fit its content */
+    min-width: 200px;  /* Minimum width for the button */
+}
+
+.simulate-btn:hover {
+    background: #45a049;
+}
+
+.reaction-result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.reaction-result .error {
+    color: #f44336;
+    font-weight: bold;
+}
+
+.reaction-result .success {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .modal-content {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode .isotope-input {
+    background-color: #444;
+    border-color: #555;
+    color: #fff;
+}
+
+body.dark-mode .isotope-input::placeholder {
+    color: #888;
+}
+
+body.dark-mode .close {
+    color: #fff;
+}
+
+body.dark-mode .close:hover {
+    color: #ddd;
+}
+
+.reaction-option {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.reaction-header {
+    margin-bottom: 10px;
+}
+
+.reaction-equation {
+    font-size: 1.2em;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.reaction-details {
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+
+.reaction-type {
+    color: #FFA726;
+    font-style: italic;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.energy-details {
+    color: #90CAF9;
+}
+
+.energy-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.energy-label {
+    color: #90CAF9;
+    opacity: 0.8;
+}
+
+.energy-value {
+    font-weight: bold;
+}
+
+.error {
+    color: #ff6b6b;
+    padding: 15px;
+    background: rgba(255,107,107,0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.success {
+    padding: 15px;
+}
+
+/* Reaction Results Styling */
+.reactions-container {
+    width: 100%;
+    max-width: 700px;  /* Added max-width */
+    margin: 0 auto;  /* Center the results */
+    padding: 20px 0;
+}
+
+.results-header {
+    color: #4CAF50;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #4CAF50;
+}
+
+.reaction-item {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.reaction-equation {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.arrow {
+    color: #4CAF50;
+    margin: 0 10px;
+}
+
+.reaction-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.no-result {
+    color: #ff4444;
+    text-align: center;
+    padding: 20px;
+}
+
+.reaction-type {
+    text-transform: capitalize;
+}
+
+/* Add these styles to your existing CSS */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* Replace existing loader styles with these new styles */
+.loader {
+    width: 120px;
+    height: 120px;
+    position: relative;
+}
+
+/* First element */
+.element1 {
+    width: 30px;
+    height: 30px;
+    background: #4CAF50;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: moveRight 2s infinite;
+}
+
+.element1::before,
+.element1::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(76, 175, 80, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit 1s infinite linear;
+}
+
+.element1::after {
+    width: 35px;
+    height: 35px;
+    animation: orbit 0.8s infinite linear reverse;
+}
+
+/* Second element */
+.element2 {
+    width: 30px;
+    height: 30px;
+    background: #90CAF9;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: moveLeft 2s infinite;
+}
+
+.element2::before,
+.element2::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(144, 202, 249, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit 1s infinite linear;
+}
+
+.element2::after {
+    width: 35px;
+    height: 35px;
+    animation: orbit 0.8s infinite linear reverse;
+}
+
+/* Result element */
+.result {
+    width: 40px;
+    height: 40px;
+    background: #FFA726;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: appear 2s infinite;
+}
+
+.result::before,
+.result::after {
+    content: '';
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    border: 2px solid rgba(255, 167, 38, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit 1s infinite linear;
+}
+
+.result::after {
+    width: 48px;
+    height: 48px;
+    animation: orbit 0.8s infinite linear reverse;
+}
+
+@keyframes moveRight {
+    0%, 100% { left: 0; opacity: 1; }
+    45% { left: 35px; opacity: 1; }
+    50% { left: 35px; opacity: 0; }
+    51% { left: 0; opacity: 0; }
+    55% { left: 0; opacity: 1; }
+}
+
+@keyframes moveLeft {
+    0%, 100% { right: 0; opacity: 1; }
+    45% { right: 35px; opacity: 1; }
+    50% { right: 35px; opacity: 0; }
+    51% { right: 0; opacity: 0; }
+    55% { right: 0; opacity: 1; }
+}
+
+@keyframes appear {
+    0%, 45% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+    55% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    90% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+@keyframes orbit {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Dark mode adjustments */
+#reactionLogModal.dark-mode .element1 {
+    background: #45a049;
+}
+
+#reactionLogModal.dark-mode .element1::before,
+#reactionLogModal.dark-mode .element1::after {
+    border-color: rgba(69, 160, 73, 0.3);
+}
+
+#reactionLogModal.dark-mode .element2 {
+    background: #64B5F6;
+}
+
+#reactionLogModal.dark-mode .element2::before,
+#reactionLogModal.dark-mode .element2::after {
+    border-color: rgba(100, 181, 246, 0.3);
+}
+
+#reactionLogModal.dark-mode .result {
+    background: #FFA726;
+}
+
+#reactionLogModal.dark-mode .result::before,
+#reactionLogModal.dark-mode .result::after {
+    border-color: rgba(255, 167, 38, 0.3);
 } 

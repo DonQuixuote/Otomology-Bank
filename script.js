@@ -1231,3 +1231,246 @@ document.addEventListener('DOMContentLoaded', () => {
     
     userCollection.updateProgress();
 });
+
+// Global database object
+let reactionDatabase = [];
+
+// Function to load the reaction database
+async function loadReactionDatabase() {
+    try {
+        const response = await fetch('reactions.txt');
+        const text = await response.text();
+        const lines = text.split('\n');
+        
+        // Split into lines and parse each line
+        reactionDatabase = text.split('\n')
+            .slice(1) // Skip header line
+            .filter(line => line.trim()) // Remove empty lines
+            .map(line => {
+                const parts = line.split('|').map(part => part.trim());
+                if (parts.length < 5) return null;
+                
+                return {
+                    inputs: parts[2].split('=>')[0].trim(),
+                    outputs: parts[2].split('=>')[1].trim(),
+                    nrgUsed: parseFloat(parts[3]) || 0,
+                    type: parts[4]
+                };
+            })
+            .filter(Boolean); // Remove null entries
+            
+        console.log(`Loaded ${reactionDatabase.length} reactions`);
+    } catch (error) {
+        console.error('Error loading reaction database:', error);
+        reactionDatabase = [];
+    }
+}
+
+// Function to format user input into database format
+function formatIsotope(input) {
+    // Remove any existing special characters and spaces
+    input = input.trim().replace(/[⁻⁺∙ª-]/g, '');
+    
+    // Extract letters and numbers
+    const match = input.match(/([A-Za-z]+)(\d+)/);
+    if (!match) return null;
+    
+    // Capitalize first letter, lowercase rest, add dash and dot
+    // Add extra space after dot to match database format
+    const letters = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+    const numbers = match[2];
+    return `${letters}-${numbers}∙ `; // Note the extra space after ∙
+}
+
+// Function to search reactions
+function findReactions(inputs, userEnergy) {
+    const results = [];
+    const searchString = inputs.join(' + ');
+    console.log('Search string:', searchString);
+    console.log('User energy:', userEnergy);
+    
+    if (!reactionDatabase || !Array.isArray(reactionDatabase)) {
+        console.error('Reaction database not properly loaded');
+        return results;
+    }
+
+    reactionDatabase.forEach((reaction, index) => {
+        if (!reaction || !reaction.inputs) {
+            console.log(`Skipping invalid reaction at index ${index}`);
+            return;
+        }
+
+        // Parse the inputs string, removing the energy value
+        const inputParts = reaction.inputs.split('+').map(part => part.trim());
+        const dbInputs = inputParts.filter(part => part.includes('-'));
+        
+        // Create normalized versions for comparison
+        const normalizedSearch = searchString.replace(/[⁻⁺∙ª\s]/g, '').toLowerCase();
+        const normalizedDB = dbInputs.join('+').replace(/[⁻⁺∙ª\s]/g, '').toLowerCase();
+        
+        // Only include reactions that can occur with the given energy
+        if (normalizedSearch === normalizedDB && reaction.nrgUsed <= userEnergy) {
+            console.log('Found match within energy limit!', reaction);
+            results.push({
+                inputs: dbInputs.join(' + '),
+                outputs: reaction.outputs,
+                energyRequired: reaction.nrgUsed,
+                type: reaction.type,
+                canReact: true // Always true since we're filtering by energy
+            });
+        }
+    });
+    
+    console.log(`Search complete. Found ${results.length} matches within energy limit`);
+    return results;
+}
+
+// Function to handle the simulation
+async function simulateReaction() {
+    // Get the specific result div inside the reaction log modal
+    const modalContent = document.querySelector('#reactionLogModal .modal-content');
+    const resultDiv = modalContent.querySelector('.reaction-result');
+    
+    // Show loader immediately
+    resultDiv.innerHTML = `
+        <div class="loader-container">
+            <div class="loader">
+                <div class="element1"></div>
+                <div class="element2"></div>
+                <div class="result"></div>
+            </div>
+            <div class="loader-text">Searching for reactions...</div>
+        </div>
+    `;
+
+    const inputs = [];
+    
+    // Add artificial delay to ensure loader is visible
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Collect non-empty isotope inputs
+    for (let i = 1; i <= 5; i++) {
+        const value = document.getElementById(`isotope${i}`).value.trim();
+        if (value) {
+            const formattedIsotope = formatIsotope(value);
+            if (formattedIsotope) {
+                inputs.push(formattedIsotope);
+            }
+        }
+    }
+    
+    const energy = parseFloat(document.getElementById('energy').value) || 0;
+    
+    if (inputs.length === 0) {
+        resultDiv.innerHTML = '<div class="error">Please enter at least one isotope</div>';
+        return;
+    }
+    
+    try {
+        // Wrap the search in a Promise with a minimum display time
+        const reactions = await new Promise(resolve => {
+            setTimeout(() => {
+                const results = findReactions(inputs, energy);
+                resolve(results);
+            }, 1000); // Show loader for at least 1 second
+        });
+        
+        if (reactions.length > 0) {
+            let html = '<div class="reactions-container">';
+            reactions.forEach(reaction => {
+                html += `
+                    <div class="reaction-option">
+                        <div class="reaction-header">
+                            <div class="reaction-equation">${reaction.inputs} → ${reaction.outputs}</div>
+                        </div>
+                        <div class="reaction-details">
+                            <div class="reaction-type">${reaction.type || 'Unknown'} reaction</div>
+                            <div class="energy-details">
+                                <div class="energy-line">
+                                    <span class="energy-label">Energy Required:</span>
+                                    <span class="energy-value">${reaction.energyRequired}</span>
+                                </div>
+                                <div class="energy-line">
+                                    <span class="energy-label">Can React:</span>
+                                    <span class="energy-value">${reaction.canReact ? 'Yes' : 'No'}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            resultDiv.innerHTML = html;
+        } else {
+            resultDiv.innerHTML = '<div class="error">No matching reactions found</div>';
+        }
+    } catch (error) {
+        console.error('Error during simulation:', error);
+        resultDiv.innerHTML = '<div class="error">An error occurred while searching reactions</div>';
+    }
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadReactionDatabase();
+    
+    // Add click handler for Otom Lab button
+    const reactionLogBtn = document.getElementById('reactionLogBtn');
+    if (reactionLogBtn) {
+        reactionLogBtn.addEventListener('click', () => {
+            const modal = document.getElementById('reactionLogModal');
+            if (modal) {
+                modal.style.display = 'block';
+            }
+        });
+    }
+    
+    // Add click handler for simulate button
+    const simulateBtn = document.getElementById('simulateBtn');
+    if (simulateBtn) {
+        simulateBtn.addEventListener('click', simulateReaction);
+    }
+    
+    // Close modal only when clicking X button
+    const closeBtn = document.querySelector('#reactionLogModal .close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            const modal = document.getElementById('reactionLogModal');
+            modal.style.display = 'none';
+        });
+    }
+    
+    // Remove the click-outside-to-close functionality
+    // window.addEventListener('click', (event) => {
+    //     const modal = document.getElementById('reactionLogModal');
+    //     if (event.target === modal) {
+    //         modal.style.display = 'none';
+    //     }
+    // });
+    
+    // Add dark mode toggle functionality
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const modal = document.getElementById('reactionLogModal');
+    
+    if (darkModeToggle && modal) {
+        // Check system preference or stored preference
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const storedPreference = localStorage.getItem('darkMode');
+        
+        // Set initial mode
+        if (storedPreference === 'true' || (storedPreference === null && prefersDarkMode)) {
+            modal.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+        
+        // Handle toggle changes
+        darkModeToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                modal.classList.add('dark-mode');
+            } else {
+                modal.classList.remove('dark-mode');
+            }
+            localStorage.setItem('darkMode', e.target.checked);
+        });
+    }
+});
