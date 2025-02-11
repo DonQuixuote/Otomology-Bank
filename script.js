@@ -190,7 +190,7 @@ const isotopeEquations = {
         { number: 35, isotope: 'Fj-35', equation: 'Pm17+Pm18', energy: '1050' },
         { number: 36, isotope: 'Fj-36', equation: 'Pm18+Pm18', energy: '1100' },
         { number: 37, isotope: 'Fj-37', equation: 'Mineable', energy: '' },
-        { number: 38, isotope: 'Fj-38', equation: 'Pm19+Pm19', energy: '2000' },
+        { number: 38, isotope: 'Fj-38', equation: 'Dx15+M23', energy: '1100' },
         { number: 39, isotope: 'Fj-39', equation: 'Ju2+D37', energy: '940' },
         { number: 40, isotope: 'Fj-40', equation: 'Ju3+D37', energy: '1000' },
         { number: 41, isotope: 'Fj-41', equation: 'Af9+Zq32', energy: '1200' }
@@ -216,14 +216,14 @@ const isotopeEquations = {
         { number: 45, isotope: 'C-45', equation: 'Xl11+Xc34', energy: '1400' }
     ],
     'E': [
-        { number: 40, isotope: 'E-40', equation: 'Dx15+O37', energy: '2100' },
+        { number: 40, isotope: 'E-40', equation: 'Dx15+S25', energy: '1150' },
         { number: 41, isotope: 'E-41', equation: 'Pm17+Pt24', energy: '1600' },
         { number: 42, isotope: 'E-42', equation: 'Cq5+Fj37', energy: '750' },
-        { number: 43, isotope: 'E-43', equation: 'Pm18+Pt24', energy: '1700' },
-        { number: 44, isotope: 'E-44', equation: 'Pm19+Pt24', energy: '1800' },
-        { number: 45, isotope: 'E-45', equation: 'Pm19+Pt25', energy: '1900' },
-        { number: 46, isotope: 'E-46', equation: 'D37+Xl11', energy: '1100' },
-        { number: 47, isotope: 'E-47', equation: 'D38+Xl11', energy: '1200' },
+        { number: 43, isotope: 'E-43', equation: 'Pm19+Pt24', energy: '2500' },
+        { number: 44, isotope: 'E-44', equation: 'Pm19+Pt25', energy: '1900' },
+        { number: 45, isotope: 'E-45', equation: 'Zq32+Zz13', energy: '1200' },
+        { number: 46, isotope: 'E-46', equation: 'Af9+D37', energy: '1350' },
+        { number: 47, isotope: 'E-47', equation: 'Fw25+M22', energy: '1900' },
         { number: 48, isotope: 'E-48', equation: 'M23+Pt25', energy: '1400' }
     ],
     'A': [
@@ -238,15 +238,15 @@ const isotopeEquations = {
         { number: 50, isotope: 'A-50', equation: 'D39+Xl11', energy: '1400' }
     ],
     'Aw': [
-        { number: 44, isotope: 'Aw-44', equation: 'Dx15+O37', energy: '1750' },
-        { number: 45, isotope: 'Aw-45', equation: 'Dx15+O38', energy: '1800' },
-        { number: 46, isotope: 'Aw-46', equation: 'Dx16+O38', energy: '1900' },
-        { number: 47, isotope: 'Aw-47', equation: 'Dx17+O38', energy: '2000' },
-        { number: 48, isotope: 'Aw-48', equation: 'Dx17+O39', energy: '2100' },
-        { number: 49, isotope: 'Aw-49', equation: 'Dx18+O39', energy: '2200' },
+        { number: 44, isotope: 'Aw-44', equation: 'Fj34+Pq10', energy: '950' },
+        { number: 45, isotope: 'Aw-45', equation: 'Dx15+Xc30', energy: '2400' },
+        { number: 46, isotope: 'Aw-46', equation: 'Dx16+Xc30', energy: '2400' },
+        { number: 47, isotope: 'Aw-47', equation: 'Dx17+Xc30', energy: '2500' },
+        { number: 48, isotope: 'Aw-48', equation: 'Dx17+Xc31', energy: '2100' },
+        { number: 49, isotope: 'Aw-49', equation: 'Dx12+Xc32', energy: '2200' },
         { number: 50, isotope: 'Aw-50', equation: 'Mineable', energy: '' },
-        { number: 51, isotope: 'Aw-51', equation: 'Dx19+O40', energy: '2400' },
-        { number: 52, isotope: 'Aw-52', equation: 'Dx19+O41', energy: '2500' }
+        { number: 51, isotope: 'Aw-51', equation: 'Dx12+Xc34', energy: '2400' },
+        { number: 52, isotope: 'Aw-52', equation: 'Dx18+Xc34', energy: '2500' }
     ],
     'Oc': [
         { number: 46, isotope: 'Oc-46', equation: 'Ju1+Aw45', energy: '1100' },
@@ -254,21 +254,21 @@ const isotopeEquations = {
         { number: 48, isotope: 'Oc-48', equation: 'Ju2+Aw46', energy: '1300' },
         { number: 49, isotope: 'Oc-49', equation: 'Ju3+Aw46', energy: '1400' },
         { number: 50, isotope: 'Oc-50', equation: 'Pt25+Pt25', energy: '1650' },
-        { number: 51, isotope: 'Oc-51', equation: 'Cq5+Oc46', energy: '786' },
-        { number: 52, isotope: 'Oc-52', equation: 'Cq6+Oc46', energy: '800' },
-        { number: 53, isotope: 'Oc-53', equation: 'Cq6+Oc47', energy: '850' },
-        { number: 54, isotope: 'Oc-54', equation: 'Cq7+Oc47', energy: '900' }
+        { number: 51, isotope: 'Oc-51', equation: 'Ju1+Aw50', energy: '1250' },
+        { number: 52, isotope: 'Oc-52', equation: 'Ju2+Aw50', energy: '1250' },
+        { number: 53, isotope: 'Oc-53', equation: 'Ju3+Aw50', energy: '1250' },
+        { number: 54, isotope: 'Oc-54', equation: 'Ju3+Aw51', energy: '1250' }
     ],
     'Nb': [
         { number: 47, isotope: 'Nb-47', equation: 'Zz13+Fj34', energy: '1250' },
         { number: 48, isotope: 'Nb-48', equation: 'Zz14+Fj34', energy: '1300' },
         { number: 49, isotope: 'Nb-49', equation: 'Zz14+Fj35', energy: '1350' },
         { number: 50, isotope: 'Nb-50', equation: 'Zz15+Fj35', energy: '1400' },
-        { number: 51, isotope: 'Nb-51', equation: 'S25+S26', energy: '1600' },
-        { number: 52, isotope: 'Nb-52', equation: 'S25+S27', energy: '1700' },
-        { number: 53, isotope: 'Nb-53', equation: 'S26+S27', energy: '1800' },
+        { number: 51, isotope: 'Nb-51', equation: 'Pt25+S26', energy: '1700' },
+        { number: 52, isotope: 'Nb-52', equation: 'Pt26+S26', energy: '2200' },
+        { number: 53, isotope: 'Nb-53', equation: 'D37+Dx16', energy: '2000' },
         { number: 54, isotope: 'Nb-54', equation: 'Mineable', energy: '' },
-        { number: 55, isotope: 'Nb-55', equation: 'M23+Xc32', energy: '' },
+        { number: 55, isotope: 'Nb-55', equation: 'M23+Xc32', energy: '1800' },
         { number: 56, isotope: 'Nb-56', equation: 'M22+Xc34', energy: '2300' }
     ],
     'Xk': [
@@ -397,7 +397,9 @@ const isotopeEquations = {
         { number: 74, isotope: 'Qi-74', equation: 'M20+Nb54', energy: '3000' },
         { number: 75, isotope: 'Qi-75', equation: 'Pt25+Aw50', energy: '2550' },
         { number: 76, isotope: 'Qi-76', equation: 'M22+Nb54', energy: '3100' },
-        { number: 77, isotope: 'Qi-77', equation: 'M23+Nb55', energy: '2213' }
+        { number: 77, isotope: 'Qi-77', equation: 'M23+Nb54', energy: '2213' },
+        { number: 78, isotope: 'Qi-78', equation: 'M23+Nb55', energy: '2213' }
+
     ],
     'Xy': [
         { number: 69, isotope: 'Xy-69', equation: 'Pt22+Nb47', energy: '2040' },
@@ -413,6 +415,7 @@ const isotopeEquations = {
         { number: 79, isotope: 'Xy-79', equation: 'Fw25+Nb54', energy: '2400' }
     ],
     'Gq': [
+        { number: 71, isotope: 'Gq-71', equation: 'Dx14+Hb57', energy: '1750' },
         { number: 72, isotope: 'Gq-72', equation: 'Dx15+Hb57', energy: '1750' },
         { number: 73, isotope: 'Gq-73', equation: 'Dx16+Hb57', energy: '2550' },
         { number: 74, isotope: 'Gq-74', equation: 'Xc30+A44', energy: '3450' },
@@ -1171,22 +1174,33 @@ const userCollection = {
 
     updateProgress() {
         const collection = JSON.parse(localStorage.getItem('isotopeCollection'));
+        let totalCollected = 0;
         let totalIsotopes = 0;
-        let collectedIsotopes = 0;
-        
+
+        // Calculate totals
         Object.keys(isotopeEquations).forEach(element => {
-            totalIsotopes += isotopeEquations[element].length;
-            collectedIsotopes += (collection[element] || []).length;
+            const elementIsotopes = isotopeEquations[element] || [];
+            const collectedIsotopes = collection[element] || [];
+            totalCollected += collectedIsotopes.length;
+            totalIsotopes += elementIsotopes.length;
         });
+
+        // Update the progress circle
+        const percentage = document.querySelector('.percentage');
+        const label = document.querySelector('.label');
+        const progressPath = document.querySelector('.progress');
         
-        const percentage = Math.round((collectedIsotopes / totalIsotopes) * 100);
-        
-        const progressPath = document.querySelector('.progress-circle path.progress');
-        const percentageText = document.querySelector('.progress-text .percentage');
-        
-        if (progressPath && percentageText) {
-            progressPath.style.strokeDasharray = `${percentage}, 100`;
-            percentageText.textContent = `${percentage}%`;
+        if (percentage && label && progressPath) {
+            const percentValue = (totalCollected / totalIsotopes) * 100;
+            percentage.textContent = `${percentValue.toFixed(1)}%`;
+            label.textContent = `${totalCollected}/${totalIsotopes} Isotopes`;
+            
+            // Calculate the SVG path for the circle
+            const radius = 15.9155; // This matches your SVG path
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference - (percentValue / 100) * circumference;
+            progressPath.style.strokeDasharray = `${circumference} ${circumference}`;
+            progressPath.style.strokeDashoffset = offset;
         }
     }
 };
@@ -1216,4 +1230,247 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     userCollection.updateProgress();
+});
+
+// Global database object
+let reactionDatabase = [];
+
+// Function to load the reaction database
+async function loadReactionDatabase() {
+    try {
+        const response = await fetch('reactions.txt');
+        const text = await response.text();
+        const lines = text.split('\n');
+        
+        // Split into lines and parse each line
+        reactionDatabase = text.split('\n')
+            .slice(1) // Skip header line
+            .filter(line => line.trim()) // Remove empty lines
+            .map(line => {
+                const parts = line.split('|').map(part => part.trim());
+                if (parts.length < 5) return null;
+                
+                return {
+                    inputs: parts[2].split('=>')[0].trim(),
+                    outputs: parts[2].split('=>')[1].trim(),
+                    nrgUsed: parseFloat(parts[3]) || 0,
+                    type: parts[4]
+                };
+            })
+            .filter(Boolean); // Remove null entries
+            
+        console.log(`Loaded ${reactionDatabase.length} reactions`);
+    } catch (error) {
+        console.error('Error loading reaction database:', error);
+        reactionDatabase = [];
+    }
+}
+
+// Function to format user input into database format
+function formatIsotope(input) {
+    // Remove any existing special characters and spaces
+    input = input.trim().replace(/[⁻⁺∙ª-]/g, '');
+    
+    // Extract letters and numbers
+    const match = input.match(/([A-Za-z]+)(\d+)/);
+    if (!match) return null;
+    
+    // Capitalize first letter, lowercase rest, add dash and dot
+    // Add extra space after dot to match database format
+    const letters = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+    const numbers = match[2];
+    return `${letters}-${numbers}∙ `; // Note the extra space after ∙
+}
+
+// Function to search reactions
+function findReactions(inputs, userEnergy) {
+    const results = [];
+    const searchString = inputs.join(' + ');
+    console.log('Search string:', searchString);
+    console.log('User energy:', userEnergy);
+    
+    if (!reactionDatabase || !Array.isArray(reactionDatabase)) {
+        console.error('Reaction database not properly loaded');
+        return results;
+    }
+
+    reactionDatabase.forEach((reaction, index) => {
+        if (!reaction || !reaction.inputs) {
+            console.log(`Skipping invalid reaction at index ${index}`);
+            return;
+        }
+
+        // Parse the inputs string, removing the energy value
+        const inputParts = reaction.inputs.split('+').map(part => part.trim());
+        const dbInputs = inputParts.filter(part => part.includes('-'));
+        
+        // Create normalized versions for comparison
+        const normalizedSearch = searchString.replace(/[⁻⁺∙ª\s]/g, '').toLowerCase();
+        const normalizedDB = dbInputs.join('+').replace(/[⁻⁺∙ª\s]/g, '').toLowerCase();
+        
+        // Only include reactions that can occur with the given energy
+        if (normalizedSearch === normalizedDB && reaction.nrgUsed <= userEnergy) {
+            console.log('Found match within energy limit!', reaction);
+            results.push({
+                inputs: dbInputs.join(' + '),
+                outputs: reaction.outputs,
+                energyRequired: reaction.nrgUsed,
+                type: reaction.type,
+                canReact: true // Always true since we're filtering by energy
+            });
+        }
+    });
+    
+    console.log(`Search complete. Found ${results.length} matches within energy limit`);
+    return results;
+}
+
+// Function to handle the simulation
+async function simulateReaction() {
+    // Get the specific result div inside the reaction log modal
+    const modalContent = document.querySelector('#reactionLogModal .modal-content');
+    const resultDiv = modalContent.querySelector('.reaction-result');
+    
+    // Show loader immediately
+    resultDiv.innerHTML = `
+        <div class="loader-container">
+            <div class="loader">
+                <div class="element1"></div>
+                <div class="element2"></div>
+                <div class="result"></div>
+            </div>
+            <div class="loader-text">Searching for reactions...</div>
+        </div>
+    `;
+
+    const inputs = [];
+    
+    // Add artificial delay to ensure loader is visible
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Collect non-empty isotope inputs
+    for (let i = 1; i <= 5; i++) {
+        const value = document.getElementById(`isotope${i}`).value.trim();
+        if (value) {
+            const formattedIsotope = formatIsotope(value);
+            if (formattedIsotope) {
+                inputs.push(formattedIsotope);
+            }
+        }
+    }
+    
+    const energy = parseFloat(document.getElementById('energy').value) || 0;
+    
+    if (inputs.length === 0) {
+        resultDiv.innerHTML = '<div class="error">Please enter at least one isotope</div>';
+        return;
+    }
+    
+    try {
+        // Wrap the search in a Promise with a minimum display time
+        const reactions = await new Promise(resolve => {
+            setTimeout(() => {
+                const results = findReactions(inputs, energy);
+                resolve(results);
+            }, 1000); // Show loader for at least 1 second
+        });
+        
+        if (reactions.length > 0) {
+            let html = '<div class="reactions-container">';
+            reactions.forEach(reaction => {
+                html += `
+                    <div class="reaction-option">
+                        <div class="reaction-header">
+                            <div class="reaction-equation">${reaction.inputs} → ${reaction.outputs}</div>
+                        </div>
+                        <div class="reaction-details">
+                            <div class="reaction-type">${reaction.type || 'Unknown'} reaction</div>
+                            <div class="energy-details">
+                                <div class="energy-line">
+                                    <span class="energy-label">Energy Required:</span>
+                                    <span class="energy-value">${reaction.energyRequired}</span>
+                                </div>
+                                <div class="energy-line">
+                                    <span class="energy-label">Can React:</span>
+                                    <span class="energy-value">${reaction.canReact ? 'Yes' : 'No'}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            resultDiv.innerHTML = html;
+        } else {
+            resultDiv.innerHTML = '<div class="error">No matching reactions found</div>';
+        }
+    } catch (error) {
+        console.error('Error during simulation:', error);
+        resultDiv.innerHTML = '<div class="error">An error occurred while searching reactions</div>';
+    }
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadReactionDatabase();
+    
+    // Add click handler for Otom Lab button
+    const reactionLogBtn = document.getElementById('reactionLogBtn');
+    if (reactionLogBtn) {
+        reactionLogBtn.addEventListener('click', () => {
+            const modal = document.getElementById('reactionLogModal');
+            if (modal) {
+                modal.style.display = 'block';
+            }
+        });
+    }
+    
+    // Add click handler for simulate button
+    const simulateBtn = document.getElementById('simulateBtn');
+    if (simulateBtn) {
+        simulateBtn.addEventListener('click', simulateReaction);
+    }
+    
+    // Close modal only when clicking X button
+    const closeBtn = document.querySelector('#reactionLogModal .close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            const modal = document.getElementById('reactionLogModal');
+            modal.style.display = 'none';
+        });
+    }
+    
+    // Remove the click-outside-to-close functionality
+    // window.addEventListener('click', (event) => {
+    //     const modal = document.getElementById('reactionLogModal');
+    //     if (event.target === modal) {
+    //         modal.style.display = 'none';
+    //     }
+    // });
+    
+    // Add dark mode toggle functionality
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const modal = document.getElementById('reactionLogModal');
+    
+    if (darkModeToggle && modal) {
+        // Check system preference or stored preference
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const storedPreference = localStorage.getItem('darkMode');
+        
+        // Set initial mode
+        if (storedPreference === 'true' || (storedPreference === null && prefersDarkMode)) {
+            modal.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+        
+        // Handle toggle changes
+        darkModeToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                modal.classList.add('dark-mode');
+            } else {
+                modal.classList.remove('dark-mode');
+            }
+            localStorage.setItem('darkMode', e.target.checked);
+        });
+    }
 });

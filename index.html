@@ -42,39 +42,53 @@
                 Market
                 <span class="subtitle">Otoms and Compounds</span>
             </a>
+            <a href="#" class="menu-item reaction-log" id="reactionLogBtn">
+                Otom Lab
+                <span class="subtitle">Simulate Reactions</span>
+            </a>
+
+            <!-- Sponsor Section -->
+            <div class="sponsor-section">
+                <h3 class="sponsor-title">Brought to you by:</h3>
+                <a href="https://x.com/ShapePunks" target="_blank" rel="noopener noreferrer">
+                    <img src="black_on_black_Shunks.png" alt="Shunks Logo" class="sponsor-logo rotating" width="110" height="110">
+                </a>
+            </div>
         </div>
     </div>
 
     <div class="container">
-        <h1>Periodic Table of Otoms</h1>
-        <h2>Universe Alpha </h2>
-        
+        <h1 class="periodic-title">Periodic Table of Otoms</h1>
+
+        <h2 class="universe-title">Universe Alpha</h2>
         
         <div class="periodic-table" id="periodicTable">
             <!-- Elements will be added dynamically via JavaScript -->
         </div>
         
-        <div class="progress-tracker">
-            <div class="progress-circle">
-                <svg viewBox="0 0 36 36">
-                    <path d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                        fill="none"
-                        stroke="#eee"
-                        stroke-width="3"
-                    />
-                    <path class="progress" d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                        fill="none"
-                        stroke="#4CAF50"
-                        stroke-width="3"
-                    />
-                </svg>
-                <div class="progress-text">
-                    <span class="percentage">0%</span>
-                    <span class="label">Isotopes Collected</span>
+        <div class="progress-and-sponsor">
+            <div class="progress-tracker">
+                <div class="progress-circle">
+                    <svg viewBox="0 0 36 36">
+                        <path d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                            fill="none"
+                            stroke="#eee"
+                            stroke-width="3"
+                        />
+                        <path class="progress" d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                            fill="none"
+                            stroke="#4CAF50"
+                            stroke-width="3"
+                        />
+                    </svg>
+                    <div class="progress-text">
+                        <span class="percentage">0%</span>
+                        <span class="label">Isotopes Collected</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,6 +102,11 @@
                 <div id="combinations"></div>
                 <!-- Add image to modal if you want -->
                 <div id="elementImage"></div>
+                <div id="searchingLoader" class="loader-container" style="display: none;">
+                    <div class="loader"></div>
+                    <div class="loader-text">Searching reactions...</div>
+                </div>
+                <div id="reactionResult" class="reaction-result"></div>
             </div>
         </div>
     </div>
@@ -98,6 +117,31 @@
     </button>
 
     <div id="roadmapModal" class="modal"></div>
+
+    <div id="reactionLogModal" class="modal">
+        <div class="modal-content">
+            <span class="close">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </span>
+            <h2>Otom Lab - Simulate Reactions</h2>
+            
+            <div class="reaction-form">
+                <div class="isotope-inputs">
+                    <input type="text" id="isotope1" class="isotope-input" placeholder="Enter first isotope (e.g., ju1)">
+                    <input type="text" id="isotope2" class="isotope-input" placeholder="Enter second isotope (optional)">
+                    <input type="text" id="isotope3" class="isotope-input" placeholder="Enter third isotope (optional)">
+                    <input type="text" id="isotope4" class="isotope-input" placeholder="Enter fourth isotope (optional)">
+                    <input type="text" id="isotope5" class="isotope-input" placeholder="Enter fifth isotope (optional)">
+                    <input type="number" id="energy" class="isotope-input" placeholder="Enter energy amount">
+                </div>
+                <button id="simulateBtn" class="simulate-btn">Simulate Reaction</button>
+            </div>
+            
+            <div class="reaction-result"></div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
