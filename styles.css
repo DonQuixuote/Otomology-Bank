@@ -1504,7 +1504,7 @@ body.dark-mode .close:hover {
 }
 
 .sponsor-logo {
-    width: 120px;
+    width: 30px;
     height: auto;
     animation: rotate 10s linear infinite;
     transition: transform 0.3s ease;
