@@ -93,7 +93,7 @@ h1 {
 /* Update empty cell styles */
 .empty {
     position: relative;
-    cursor: pointer;
+    cursor: default;
     background: transparent;
     border: none !important;
 }
@@ -107,18 +107,20 @@ h1 {
     bottom: 0;
     pointer-events: none;
     border: none !important;
+    z-index: 1; /* Add z-index */
 }
 
 /* Add pop-up hover effect with logo */
 .empty:hover::after {
     content: '';
-    background-image: url('black_on_black_Shunks.png');
+    background-image: url('./black_on_black_Shunks.png'); /* Make sure path is correct */
     background-size: 70% auto;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0;
     border: none !important;
     animation: popUp 0.3s ease forwards;
+    z-index: 2; /* Ensure hover state appears above */
 }
 
 /* Pop-up animation */
