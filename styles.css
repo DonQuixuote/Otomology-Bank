@@ -90,22 +90,55 @@ h1 {
     display: none;
 }
 
-/* Empty grid spaces */
+/* Update empty cell styles */
 .empty {
-    border: none;
-    background: none;
     position: relative;
+    cursor: pointer;
+    background: transparent;
+    border: none !important;
 }
 
-/* Add connecting lines between elements */
 .empty::after {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 1px dashed #e0e0e0;  /* Lighter dashed lines */
-    opacity: 0.5;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     pointer-events: none;
+    border: none !important;
+}
+
+/* Add pop-up hover effect with logo */
+.empty:hover::after {
+    content: '';
+    background-image: url('black_on_black_Shunks.png');
+    background-size: 70% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    border: none !important;
+    animation: popUp 0.3s ease forwards;
+}
+
+/* Pop-up animation */
+@keyframes popUp {
+    0% {
+        opacity: 0;
+        transform: scale(0) translateY(20px);
+    }
+    50% {
+        transform: scale(1.2) translateY(-5px);
+    }
+    100% {
+        opacity: 0.7;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Remove any dark mode borders */
+body.dark-mode .empty::after {
+    border: none !important;
 }
 
 /* Modal styles */
@@ -1449,4 +1482,48 @@ body.dark-mode .close:hover {
 #reactionLogModal.dark-mode .result::before,
 #reactionLogModal.dark-mode .result::after {
     border-color: rgba(255, 167, 38, 0.3);
-} 
+}
+
+/* Sponsor section styles */
+.sponsor-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 290px auto 20px auto;
+    padding: 10px 0;
+}
+
+.sponsor-title {
+    color: #e0e0e0;
+    font-size: 0.9em;  /* Reduced from 1.2em to 0.9em */
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sponsor-logo {
+    width: 200px;
+    height: auto;
+    animation: rotate 10s linear infinite;
+    transition: transform 0.3s ease;
+}
+
+.sponsor-logo:hover {
+    transform: scale(1.1);
+    animation-play-state: paused;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dark mode adjustment */
+#reactionLogModal.dark-mode .sponsor-logo {
+    filter: brightness(0) invert(1);
+}
