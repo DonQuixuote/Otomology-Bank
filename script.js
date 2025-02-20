@@ -134,7 +134,7 @@ const isotopeEquations = {
         { number: 22, isotope: 'Pt-22', equation: 'Nb47', energy: '3687' },
         { number: 23, isotope: 'Pt-23', equation: 'Xl10+Zz13', energy: '582' },
         { number: 24, isotope: 'Pt-24', equation: 'Mineable', energy: '' },
-        { number: 25, isotope: 'Pt-25', equation: 'Mineable', energy: '' },
+        { number: 25, isotope: 'Pt-25', equation: 'Mineable or Pm18+Af7', energy: '600' },
         { number: 26, isotope: 'Pt-26', equation: 'Mineable', energy: '' },
         { number: 27, isotope: 'Pt-27', equation: 'Aw50', energy: '4600' },
         { number: 28, isotope: 'Pt-28', equation: 'Aw52', energy: '4400' }
@@ -162,7 +162,7 @@ const isotopeEquations = {
         { number: 29, isotope: 'Xc-29', equation: 'Zz14+Dx15', energy: '800' },
         { number: 30, isotope: 'Xc-30', equation: 'Mineable', energy: '' },
         { number: 31, isotope: 'Xc-31', equation: 'Mineable', energy: '' },
-        { number: 32, isotope: 'Xc-32', equation: 'Mineable', energy: '' },
+        { number: 32, isotope: 'Xc-32', equation: 'Zq32', energy: '0' },
         { number: 33, isotope: 'Xc-33', equation: 'Pq15+Pm18', energy: '800' },
         { number: 34, isotope: 'Xc-34', equation: 'Mineable', energy: '' }
     ],
@@ -448,6 +448,7 @@ const isotopeEquations = {
         { number: 82, isotope: 'H-82', equation: 'Xc32+Oc50', energy: '2850' }
     ],
     'U': [
+        { number: 77, isotope: 'U-77', equation: 'Gy30+Hb47', energy: '2800' },
         { number: 78, isotope: 'U-78', equation: 'Fw21+Hb57', energy: '2300' },
         { number: 79, isotope: 'U-79', equation: 'Fj37+A42', energy: '2800' },
         { number: 80, isotope: 'U-80', equation: 'Pt25+Yp55', energy: '2650' },
