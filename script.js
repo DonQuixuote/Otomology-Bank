@@ -448,7 +448,7 @@ const isotopeEquations = {
         { number: 82, isotope: 'H-82', equation: 'Xc32+Oc50', energy: '2850' }
     ],
     'U': [
-        { number: 77, isotope: 'U-77', equation: 'Gy30+Hb47', energy: '2800' },
+        { number: 77, isotope: 'U-77', equation: 'Gy30+Nb47', energy: '2800' },
         { number: 78, isotope: 'U-78', equation: 'Fw21+Hb57', energy: '2300' },
         { number: 79, isotope: 'U-79', equation: 'Fj37+A42', energy: '2800' },
         { number: 80, isotope: 'U-80', equation: 'Pt25+Yp55', energy: '2650' },
