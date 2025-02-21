@@ -134,14 +134,14 @@ const isotopeEquations = {
         { number: 22, isotope: 'Pt-22', equation: 'Nb47', energy: '3687' },
         { number: 23, isotope: 'Pt-23', equation: 'Xl10+Zz13', energy: '582' },
         { number: 24, isotope: 'Pt-24', equation: 'Mineable', energy: '' },
-        { number: 25, isotope: 'Pt-25', equation: 'Mineable or Pm18+Af7', energy: '600' },
+        { number: 25, isotope: 'Pt-25', equation: 'Mineable', energy: '' },
         { number: 26, isotope: 'Pt-26', equation: 'Mineable', energy: '' },
         { number: 27, isotope: 'Pt-27', equation: 'Aw50', energy: '4600' },
         { number: 28, isotope: 'Pt-28', equation: 'Aw52', energy: '4400' }
     ],
     'S': [
         { number: 24, isotope: 'S-24', equation: 'Pq10+Dx14', energy: '518' },
-        { number: 25, isotope: 'S-25', equation: 'Mineable', energy: '' },
+        { number: 25, isotope: 'S-25', equation: 'Mineable or Pm18+Af7', energy: '600' },
         { number: 26, isotope: 'S-26', equation: 'Mineable', energy: '' },
         { number: 27, isotope: 'S-27', equation: 'Af9+Pm18', energy: '900' },
         { number: 28, isotope: 'S-28', equation: 'W5+M23', energy: '850' },
