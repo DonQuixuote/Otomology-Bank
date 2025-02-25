@@ -224,7 +224,7 @@ const isotopeEquations = {
         { number: 45, isotope: 'E-45', equation: 'Zq32+Zz13', energy: '1200' },
         { number: 46, isotope: 'E-46', equation: 'Af9+D37', energy: '1350' },
         { number: 47, isotope: 'E-47', equation: 'Fw25+M22', energy: '1900' },
-        { number: 48, isotope: 'E-48', equation: 'M23+Pt25', energy: '1400' }
+        { number: 48, isotope: 'E-48', equation: 'M23+Fw25', energy: '1400' }
     ],
     'A': [
         { number: 42, isotope: 'A-42', equation: 'S25+Pm17', energy: '1200' },
@@ -243,9 +243,9 @@ const isotopeEquations = {
         { number: 46, isotope: 'Aw-46', equation: 'Dx16+Xc30', energy: '2400' },
         { number: 47, isotope: 'Aw-47', equation: 'Dx17+Xc30', energy: '2500' },
         { number: 48, isotope: 'Aw-48', equation: 'Dx17+Xc31', energy: '2100' },
-        { number: 49, isotope: 'Aw-49', equation: 'Dx12+Xc32', energy: '2200' },
+        { number: 49, isotope: 'Aw-49', equation: 'Pq12+D37', energy: '1400' },
         { number: 50, isotope: 'Aw-50', equation: 'Mineable', energy: '' },
-        { number: 51, isotope: 'Aw-51', equation: 'Dx12+Xc34', energy: '2400' },
+        { number: 51, isotope: 'Aw-51', equation: 'Fw25+Pt26', energy: '2050' },
         { number: 52, isotope: 'Aw-52', equation: 'Dx18+Xc34', energy: '2500' }
     ],
     'Oc': [
