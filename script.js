@@ -385,7 +385,7 @@ const isotopeEquations = {
         { number: 74, isotope: 'Gk-74', equation: 'D37+D37', energy: '2550' },
         { number: 75, isotope: 'Gk-75', equation: 'Fw25+Aw50', energy: '2400' },
         { number: 76, isotope: 'Gk-76', equation: 'D37+D39', energy: '2550' },
-        { number: 77, isotope: 'Gk-76', equation: 'Aw52+Fw25', energy: '2200' }
+        { number: 77, isotope: 'Gk-77', equation: 'Aw52+Fw25', energy: '2200' }
     ],
     'Qi': [
         { number: 67, isotope: 'Qi-67', equation: 'Pq10+Hb57', energy: '1200' },
