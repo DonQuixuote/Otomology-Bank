@@ -97,7 +97,7 @@ const isotopeEquations = {
     'Zz': [
         { number: 13, isotope: 'Zz-13', equation: 'Mineable', energy: '' },
         { number: 14, isotope: 'Zz-14', equation: 'Mineable', energy: '' },
-        { number: 15, isotope: 'Zz-15', equation: 'Mineable', energy: '' },
+        { number: 15, isotope: 'Zz-15', equation: 'Dx15', energy: '0' },
         { number: 16, isotope: 'Zz-16', equation: 'Xc34', energy: '2500' }
     ],
     'Dx': [
@@ -294,7 +294,8 @@ const isotopeEquations = {
         { number: 58, isotope: 'Ic-58', equation: 'S26+Zq32', energy: '1800' },
         { number: 59, isotope: 'Ic-59', equation: 'Af9+Aw50', energy: '1620' },
         { number: 60, isotope: 'Ic-60', equation: 'M23+D37', energy: '1800' },
-        { number: 61, isotope: 'Ic-61', equation: 'M23+D38', energy: '1850' }
+        { number: 61, isotope: 'Ic-61', equation: 'M23+D38', energy: '1850' },
+        { number: 62, isotope: 'Ic-62', equation: 'Ju3+Xk59', energy: '1350' }
     ],
     'Yp': [
         { number: 54, isotope: 'Yp-54', equation: 'M20+Fj34', energy: '2200' },
