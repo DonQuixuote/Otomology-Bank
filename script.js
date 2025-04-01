@@ -1,62 +1,62 @@
 // Sample data structure for elements
 const elements = {
     // Row 1 (3 elements)
-    '0,0': { name: '', symbol: 'Ju', atomicNumber: 1, massNumber: 1, color: '#ff9999' },
-    '0,1': { name: '', symbol: 'W', atomicNumber: 4, massNumber: 2, color: '#99ff99' },
-    '0,7': { name: '', symbol: 'Cq', atomicNumber: 6, massNumber: 3, color: '#9999ff' },
+    '0,0': { name: '', symbol: 'Ju', atomicNumber: 1, massNumber: 1, color: '#FF6B6B' },  // Coral Red
+    '0,1': { name: '', symbol: 'W', atomicNumber: 4, massNumber: 2, color: '#4ECDC4' },   // Turquoise
+    '0,7': { name: '', symbol: 'Cq', atomicNumber: 6, massNumber: 3, color: '#96CEB4' },  // Sage Green
     
     // Row 2 (4 elements)
-    '1,0': { name: '', symbol: 'Af', atomicNumber: 7, massNumber: 4, color: '#ffff99' },
-    '1,1': { name: '', symbol: 'Xl', atomicNumber: 11, massNumber: 5, color: '#ff99ff' },
-    '1,6': { name: '', symbol: 'Pq', atomicNumber: 13, massNumber: 6, color: '#99ffff' },
-    '1,7': { name: '', symbol: 'Zz', atomicNumber: 13, massNumber: 7, color: '#ffa07a' },
+    '1,0': { name: '', symbol: 'Af', atomicNumber: 7, massNumber: 4, color: '#FF9F1C' },  // Orange
+    '1,1': { name: '', symbol: 'Xl', atomicNumber: 11, massNumber: 5, color: '#7B287D' }, // Purple
+    '1,6': { name: '', symbol: 'Pq', atomicNumber: 13, massNumber: 6, color: '#1A936F' }, // Forest Green
+    '1,7': { name: '', symbol: 'Zz', atomicNumber: 13, massNumber: 7, color: '#C3423F' }, // Dark Red
     
     // Row 3 (5 elements)
-    '2,0': { name: '', symbol: 'Dx', atomicNumber: 15, massNumber: 8, color: '#98fb98' },
-    '2,1': { name: '', symbol: 'Pm', atomicNumber: 19, massNumber: 9, color: '#dda0dd' },
-    '2,2': { name: '', symbol: 'M', atomicNumber: 23, massNumber: 10, color: '#f0e68c' },
-    '2,6': { name: '', symbol: 'Fw', atomicNumber: 25, massNumber: 11, color: '#87ceeb' },
-    '2,7': { name: '', symbol: 'Pt', atomicNumber: 25, massNumber: 12, color: '#deb887' },
+    '2,0': { name: '', symbol: 'Dx', atomicNumber: 15, massNumber: 8, color: '#58B09C' },  // Teal
+    '2,1': { name: '', symbol: 'Pm', atomicNumber: 19, massNumber: 9, color: '#9B5DE5' },  // Bright Purple
+    '2,2': { name: '', symbol: 'M', atomicNumber: 23, massNumber: 10, color: '#F15BB5' },  // Pink
+    '2,6': { name: '', symbol: 'Fw', atomicNumber: 25, massNumber: 11, color: '#00BBF9' }, // Sky Blue
+    '2,7': { name: '', symbol: 'Pt', atomicNumber: 25, massNumber: 12, color: '#FEE440' }, // Yellow
     
     // Row 4 (4 elements)
-    '3,0': { name: '', symbol: 'S', atomicNumber: 25, massNumber: 13, color: '#d8bfd8' },
-    '3,1': { name: '', symbol: 'Zq', atomicNumber: 32, massNumber: 14, color: '#ff7f50' },
-    '3,2': { name: '', symbol: 'Xc', atomicNumber: 34, massNumber: 15, color: '#6495ed' },
-    '3,7': { name: '', symbol: 'Gy', atomicNumber: 34, massNumber: 16, color: '#ffa500' },
+    '3,0': { name: '', symbol: 'S', atomicNumber: 25, massNumber: 13, color: '#8338EC' },  // Deep Purple
+    '3,1': { name: '', symbol: 'Zq', atomicNumber: 32, massNumber: 14, color: '#FB5607' }, // Bright Orange
+    '3,2': { name: '', symbol: 'Xc', atomicNumber: 34, massNumber: 15, color: '#3A86FF' }, // Blue
+    '3,7': { name: '', symbol: 'Gy', atomicNumber: 34, massNumber: 16, color: '#FF006E' }, // Hot Pink
     
     // Row 5 (8 elements)
-    '4,0': { name: '', symbol: 'D', atomicNumber: 37, massNumber: 17, color: '#40e0d0' },
-    '4,1': { name: '', symbol: 'Fj', atomicNumber: 37, massNumber: 18, color: '#ee82ee' },
-    '4,2': { name: '', symbol: 'O', atomicNumber: 38, massNumber: 19, color: '#f0fff0' },
-    '4,3': { name: '', symbol: 'C', atomicNumber: 39, massNumber: 20, color: '#ffdead' },
-    '4,4': { name: '', symbol: 'E', atomicNumber: 41, massNumber: 21, color: '#b8860b' },
-    '4,5': { name: '', symbol: 'A', atomicNumber: 42, massNumber: 22, color: '#daa520' },
-    '4,6': { name: '', symbol: 'Aw', atomicNumber: 50, massNumber: 23, color: '#cd853f' },
-    '4,7': { name: '', symbol: 'Oc', atomicNumber: 51, massNumber: 24, color: '#d2691e' },
+    '4,0': { name: '', symbol: 'D', atomicNumber: 37, massNumber: 17, color: '#118AB2' },  // Steel Blue
+    '4,1': { name: '', symbol: 'Fj', atomicNumber: 37, massNumber: 18, color: '#FFD93D' }, // Gold
+    '4,2': { name: '', symbol: 'O', atomicNumber: 38, massNumber: 19, color: '#6A4C93' },  // Royal Purple
+    '4,3': { name: '', symbol: 'C', atomicNumber: 39, massNumber: 20, color: '#95D5B2' },  // Mint Green
+    '4,4': { name: '', symbol: 'E', atomicNumber: 41, massNumber: 21, color: '#FF7B00' },  // Burnt Orange
+    '4,5': { name: '', symbol: 'A', atomicNumber: 42, massNumber: 22, color: '#DB3A34' },  // Crimson
+    '4,6': { name: '', symbol: 'Aw', atomicNumber: 50, massNumber: 23, color: '#177E89' }, // Dark Teal
+    '4,7': { name: '', symbol: 'Oc', atomicNumber: 51, massNumber: 24, color: '#084C61' }, // Navy Blue
     
     // Row 6 (5 elements)
-    '5,0': { name: '', symbol: 'Nb', atomicNumber: 54, massNumber: 25, color: '#8b4513' },
-    '5,1': { name: '', symbol: 'Xk', atomicNumber: 55, massNumber: 26, color: '#a0522d' },
-    '5,5': { name: '', symbol: 'Ic', atomicNumber: 56, massNumber: 27, color: '#6b8e23' },
-    '5,6': { name: '', symbol: 'Yp', atomicNumber: 57, massNumber: 28, color: '#9acd32' },
-    '5,7': { name: '', symbol: 'Jx', atomicNumber: 58, massNumber: 29, color: '#556b2f' },
+    '5,0': { name: '', symbol: 'Nb', atomicNumber: 54, massNumber: 25, color: '#FFC857' }, // Amber
+    '5,1': { name: '', symbol: 'Xk', atomicNumber: 55, massNumber: 26, color: '#323031' }, // Dark Gray
+    '5,5': { name: '', symbol: 'Ic', atomicNumber: 56, massNumber: 27, color: '#DB504A' }, // Salmon
+    '5,6': { name: '', symbol: 'Yp', atomicNumber: 57, massNumber: 28, color: '#4F6D7A' }, // Slate
+    '5,7': { name: '', symbol: 'Jx', atomicNumber: 58, massNumber: 29, color: '#C0D6DF' }, // Light Blue Gray
     
     // Row 7 (8 elements)
-    '6,0': { name: '', symbol: 'Hb', atomicNumber: 57, massNumber: 30, color: '#66cdaa' },
-    '6,1': { name: '', symbol: 'At', atomicNumber: 61, massNumber: 31, color: '#8fbc8f' },
-    '6,2': { name: '', symbol: 'Ny', atomicNumber: 63, massNumber: 32, color: '#20b2aa' },
-    '6,3': { name: '', symbol: 'Pw', atomicNumber: 71, massNumber: 33, color: '#008b8b' },
-    '6,4': { name: '', symbol: 'Gk', atomicNumber: 74, massNumber: 34, color: '#5f9ea0' },
-    '6,5': { name: '', symbol: 'Qi', atomicNumber: 74, massNumber: 35, color: '#4682b4' },
-    '6,6': { name: '', symbol: 'Xy', atomicNumber: 76, massNumber: 36, color: '#b0c4de' },
-    '6,7': { name: '', symbol: 'Gq', atomicNumber: 80, massNumber: 37, color: '#4169e1' },
+    '6,0': { name: '', symbol: 'Hb', atomicNumber: 57, massNumber: 30, color: '#4A5859' }, // Charcoal
+    '6,1': { name: '', symbol: 'At', atomicNumber: 61, massNumber: 31, color: '#F7B267' }, // Light Orange
+    '6,2': { name: '', symbol: 'Ny', atomicNumber: 63, massNumber: 32, color: '#F79D65' }, // Peach
+    '6,3': { name: '', symbol: 'Pw', atomicNumber: 71, massNumber: 33, color: '#F4845F' }, // Coral
+    '6,4': { name: '', symbol: 'Gk', atomicNumber: 74, massNumber: 34, color: '#F27059' }, // Salmon Pink
+    '6,5': { name: '', symbol: 'Qi', atomicNumber: 74, massNumber: 35, color: '#F25C54' }, // Red Orange
+    '6,6': { name: '', symbol: 'Xy', atomicNumber: 76, massNumber: 36, color: '#7A9E9F' }, // Blue Gray
+    '6,7': { name: '', symbol: 'Gq', atomicNumber: 80, massNumber: 37, color: '#B8F2E6' }, // Light Mint
     
     // Row 8 (5 elements)
-    '7,0': { name: '', symbol: 'Bt', atomicNumber: 81, massNumber: 38, color: '#0000cd' },
-    '7,4': { name: '', symbol: 'H', atomicNumber: 82, massNumber: 39, color: '#00008b' },
-    '7,5': { name: '', symbol: 'U', atomicNumber: 83, massNumber: 40, color: '#483d8b' },
-    '7,6': { name: '', symbol: 'Sq', atomicNumber: 84, massNumber: 41, color: '#6a5acd' },
-    '7,7': { name: '', symbol: 'Ua', atomicNumber: 85, massNumber: 42, color: '#7b68ee' }
+    '7,0': { name: '', symbol: 'Bt', atomicNumber: 81, massNumber: 38, color: '#E3B505' }, // Golden Yellow
+    '7,4': { name: '', symbol: 'H', atomicNumber: 82, massNumber: 39, color: '#95190C' },  // Dark Red
+    '7,5': { name: '', symbol: 'U', atomicNumber: 83, massNumber: 40, color: '#610345' },  // Deep Purple
+    '7,6': { name: '', symbol: 'Sq', atomicNumber: 84, massNumber: 41, color: '#107E7D' }, // Deep Teal
+    '7,7': { name: '', symbol: 'Ua', atomicNumber: 85, massNumber: 42, color: '#044B7F' }  // Deep Blue
 };
 
 const isotopeEquations = {
@@ -970,6 +970,79 @@ document.addEventListener('DOMContentLoaded', function() {
                     cursor: pointer;
                     z-index: 1001;
                 }
+
+                /* Progress circle styles */
+                .progress-circle {
+                    position: relative;
+                }
+
+                /* Progress text styles */
+                .percentage {
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 24px;
+                    font-weight: 500;
+                    color: #333;
+                }
+
+                .label {
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #666;
+                }
+
+                /* Dark mode text styles */
+                body.dark-mode .percentage {
+                    color: #fff;
+                }
+
+                body.dark-mode .label {
+                    color: #ccc;
+                }
+
+                /* Light mode - slightly darker than white background */
+                .progress-circle path:first-child {
+                    stroke: #e0e0e0;  /* Light grey */
+                }
+
+                .progress-circle path.progress {
+                    stroke: #4CAF50;  /* Keep the green progress color */
+                }
+
+                /* Dark mode - slightly darker than dark background */
+                body.dark-mode .progress-circle path:first-child {
+                    stroke: #222222;  /* Darker than #2a2a2a background */
+                }
+
+                body.dark-mode .progress-circle path.progress {
+                    stroke: #4CAF50;  /* Keep the green progress color */
+                }
+
+                /* Update the progress circle styles */
+                .progress-circle path.background-path {
+                    stroke: #e0e0e0;  /* Light mode: slightly darker than white background */
+                }
+
+                body.dark-mode .progress-circle path.background-path {
+                    stroke: #222222;  /* Dark mode: slightly darker than #2a2a2a background */
+                }
+
+                .periodic-table .element {
+                    width: 75px;
+                    height: 75px;
+                    border: 1px solid #ccc;
+                    position: relative;
+                    transition: all 0.2s ease;  /* Add transition for smooth hover effect */
+                    background: rgba(255, 255, 255, 0.8);
+                    box-sizing: border-box;
+                    margin: 0;
+                }
+                
+                .periodic-table .element:hover {
+                    transform: scale(1.1);
+                    z-index: 1;
+                    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+                }
             </style>
             <div class="roadmap-container">
                 <button class="close-btn">×</button>
@@ -1014,9 +1087,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
    
 
-    // Add the CSS for the button
+    // Add all styles in one declaration
     const style = document.createElement('style');
     style.textContent = `
+        /* Button styles */
         .submit-changes-btn {
             display: block;
             margin: 10px;
@@ -1046,21 +1120,16 @@ document.addEventListener('DOMContentLoaded', function() {
             opacity: 0.8;
             margin-top: 2px;
         }
-    `;
-    document.head.appendChild(style);
 
-    // Find the style section for the element text colors and update them
-    style.textContent += `
+        /* Element text colors */
         .atomic-number,
         .symbol,
         .mass-number,
         .name {
-            color: black;  /* Changed from #4CAF50 to black */
+            color: black;
         }
-    `;
 
-    // Add these styles to your CSS
-    style.textContent += `
+        /* Table styles */
         .isotope-table-container {
             max-height: 400px;
             overflow-y: auto;
@@ -1107,7 +1176,26 @@ document.addEventListener('DOMContentLoaded', function() {
             border-radius: 4px;
             transition: width 0.3s ease;
         }
+
+        /* Progress circle styles */
+        .progress-circle path.background-path {
+            stroke: #e0e0e0;  /* Light mode: slightly darker than white background */
+        }
+
+        .progress-circle path.progress {
+            stroke: #4CAF50;  /* Keep the green progress color */
+        }
+
+        /* Dark mode styles */
+        body.dark-mode .progress-circle path.background-path {
+            stroke: #222222;  /* Dark mode: slightly darker than #2a2a2a background */
+        }
+
+        body.dark-mode .progress-circle path.progress {
+            stroke: #4CAF50;  /* Keep the green progress color */
+        }
     `;
+    document.head.appendChild(style);
 }); 
 
 // Dark mode toggle functionality
@@ -1477,3 +1565,74 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 });
+
+function setupEventListeners() {
+    // ... existing menu toggle code ...
+
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'true') {
+        body.classList.add('dark-mode');
+        if (darkModeToggle) darkModeToggle.checked = true;
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+    });
+
+    // ... rest of your event listeners ...
+}
+
+const style = document.createElement('style');
+style.textContent += `
+    .periodic-table .element {
+        transition: all 0.2s ease;
+    }
+    
+    .periodic-table .element:hover {
+        transform: scale(1.1);
+        z-index: 1;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+`;
+document.head.appendChild(style);
+
+// Update the dark mode setup function
+function setupDarkMode() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Check localStorage when page loads
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    
+    // Apply dark mode if enabled
+    if (isDarkMode) {
+        body.classList.add('dark-mode');
+        if (darkModeToggle) {
+            darkModeToggle.checked = true;
+        }
+    }
+
+    // Add click event listener to toggle
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('change', () => {
+            // Toggle dark mode class
+            body.classList.toggle('dark-mode');
+            
+            // Save preference to localStorage
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+        });
+    }
+}
+
+// Call setupDarkMode when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    setupDarkMode();
+    // ... rest of your existing DOMContentLoaded code ...
+});
+
+// Remove any other dark mode related event listeners to avoid conflicts

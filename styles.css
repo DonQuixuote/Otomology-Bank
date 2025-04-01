@@ -1528,3 +1528,13 @@ body.dark-mode .close:hover {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* Light mode - slightly darker than white background */
+.progress-background {
+    stroke: #e0e0e0;  /* slightly darker than white */
+}
+
+/* Dark mode - slightly darker than dark background */
+body.dark-mode .progress-background {
+    stroke: #222222;  /* slightly darker than #2a2a2a */
+}
