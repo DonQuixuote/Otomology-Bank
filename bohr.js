@@ -14,28 +14,38 @@ const allowedAddresses = [
 async function checkWalletAccess() {
     try {
         if (typeof window.ethereum === 'undefined') {
+            console.log('MetaMask not detected');
             alert('Please install MetaMask to access this page');
             window.location.href = 'index.html';
             return;
         }
 
+        console.log('Requesting accounts...');
         const accounts = await window.ethereum.request({ 
             method: 'eth_requestAccounts' 
         });
         
         const userAddress = accounts[0].toLowerCase();
+        const allowedAddressesLower = allowedAddresses.map(address => address.toLowerCase());
+        
+        console.log('Connected address:', userAddress);
+        console.log('Allowed addresses:', allowedAddressesLower);
+        console.log('Is address allowed:', allowedAddressesLower.includes(userAddress));
 
-        if (!allowedAddresses.includes(userAddress)) {
+        if (!allowedAddressesLower.includes(userAddress)) {
+            console.log('Access denied for address:', userAddress);
             alert('Access denied. Your wallet is not on the allowlist.');
             window.location.href = 'index.html';
             return;
         }
 
         // If access granted, show the page content
+        console.log('Access granted');
+        document.getElementById('testingMessage').style.display = 'none';
         document.body.style.display = 'block';
 
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error in checkWalletAccess:', error);
         alert('Error connecting to wallet: ' + error.message);
         window.location.href = 'index.html';
     }
