@@ -13,9 +13,11 @@ const allowedAddresses = [
 
 async function checkWalletAccess() {
     try {
-        // First make sure the page content exists
-        const testingMessage = document.getElementById('testingMessage');
-        const pageContent = document.body;
+        // Wait for DOM to be ready
+        if (!document.body) {
+            console.log('Document body not ready');
+            return;
+        }
 
         if (typeof window.ethereum === 'undefined') {
             console.log('MetaMask not detected');
@@ -45,16 +47,10 @@ async function checkWalletAccess() {
 
         // If access granted, show the page content
         console.log('Access granted');
-        if (testingMessage) {
-            testingMessage.style.display = 'none';
-        }
-        if (pageContent) {
-            pageContent.style.display = 'block';
-        }
+        document.body.style.visibility = 'visible';
 
     } catch (error) {
         console.error('Error in checkWalletAccess:', error);
-        // Log more details about the error
         console.error('Error details:', {
             message: error.message,
             stack: error.stack
@@ -635,50 +631,34 @@ const userCollection = {
 };
 
 // Update your existing DOMContentLoaded event listener to include these initializations
-document.addEventListener('DOMContentLoaded', () => {
-    // Check wallet access
-    checkWalletAccess();
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Check wallet access first
+        await checkWalletAccess();
 
-    // Listen for account changes
-    if (window.ethereum) {
-        window.ethereum.on('accountsChanged', () => {
-            checkWalletAccess();
-        });
-    }
-    
-    // Apply dark mode immediately if it's enabled in localStorage
-    if (localStorage.getItem('darkMode') === 'true') {
-        document.body.classList.add('dark-mode');
-    }
-    
-    createPeriodicTable();
-    addElementClickHandlers();
-    setupEventListeners();
-    
-    // Initialize userCollection
-    userCollection.init();
-    
-    // Check initial state of all elements
-    const collection = JSON.parse(localStorage.getItem('isotopeCollection'));
-    Object.keys(isotopeEquations).forEach(elementSymbol => {
-        const elementIsotopes = isotopeEquations[elementSymbol] || [];
-        const collectedIsotopes = collection[elementSymbol] || [];
-        const isComplete = elementIsotopes.length === collectedIsotopes.length;
+        // Listen for account changes
+        if (window.ethereum) {
+            window.ethereum.on('accountsChanged', () => {
+                checkWalletAccess();
+            });
+        }
         
-        const elements = document.querySelectorAll('.element');
-        elements.forEach(element => {
-            const symbol = element.querySelector('.symbol');
-            if (symbol && symbol.textContent === elementSymbol) {
-                if (isComplete) {
-                    element.classList.add('completed');
-                } else {
-                    element.classList.remove('completed');
-                }
-            }
-        });
-    });
-    
-    userCollection.updateProgress();
+        // Apply dark mode immediately if it's enabled in localStorage
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+        
+        createPeriodicTable();
+        addElementClickHandlers();
+        setupEventListeners();
+        
+        // Initialize userCollection
+        userCollection.init();
+        userCollection.updateProgress();
+        
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    }
 });
 
 function setupEventListeners() {
