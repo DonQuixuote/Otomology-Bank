@@ -13,17 +13,12 @@ const allowedAddresses = [
 
 async function checkWalletAccess() {
     try {
-        // Wait for DOM to be ready
-        if (!document.body) {
-            console.log('Document body not ready');
-            return;
-        }
-
+        // First check if MetaMask is installed
         if (typeof window.ethereum === 'undefined') {
             console.log('MetaMask not detected');
             alert('Please install MetaMask to access this page');
             window.location.href = 'index.html';
-            return;
+            return false;
         }
 
         console.log('Requesting accounts...');
@@ -35,28 +30,35 @@ async function checkWalletAccess() {
         const allowedAddressesLower = allowedAddresses.map(address => address.toLowerCase());
         
         console.log('Connected address:', userAddress);
-        console.log('Allowed addresses:', allowedAddressesLower);
         console.log('Is address allowed:', allowedAddressesLower.includes(userAddress));
 
         if (!allowedAddressesLower.includes(userAddress)) {
             console.log('Access denied for address:', userAddress);
             alert('Access denied. Your wallet is not on the allowlist.');
             window.location.href = 'index.html';
-            return;
+            return false;
         }
 
         // If access granted, show the page content
         console.log('Access granted');
-        document.body.style.visibility = 'visible';
+        
+        // Make sure body exists and wait for it to be ready
+        if (document.readyState === 'loading') {
+            await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve));
+        }
+
+        // Now safely set visibility
+        if (document.body) {
+            document.body.style.visibility = 'visible';
+            return true;
+        } else {
+            throw new Error('Document body not found');
+        }
 
     } catch (error) {
         console.error('Error in checkWalletAccess:', error);
-        console.error('Error details:', {
-            message: error.message,
-            stack: error.stack
-        });
         alert('Error connecting to wallet: ' + error.message);
-        window.location.href = 'index.html';
+        return false;
     }
 }
 
@@ -630,11 +632,21 @@ const userCollection = {
     }
 };
 
-// Update your existing DOMContentLoaded event listener to include these initializations
+// Update your existing DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', async () => {
+    // Hide the body initially
+    if (document.body) {
+        document.body.style.visibility = 'hidden';
+    }
+
     try {
         // Check wallet access first
-        await checkWalletAccess();
+        const accessGranted = await checkWalletAccess();
+        
+        if (!accessGranted) {
+            console.log('Wallet access not granted');
+            return;
+        }
 
         // Listen for account changes
         if (window.ethereum) {
@@ -648,6 +660,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.body.classList.add('dark-mode');
         }
         
+        // Initialize the page
         createPeriodicTable();
         addElementClickHandlers();
         setupEventListeners();
@@ -658,6 +671,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         
     } catch (error) {
         console.error('Error during initialization:', error);
+        if (document.body) {
+            document.body.style.visibility = 'visible';
+        }
     }
 });
 
