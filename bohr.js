@@ -1,15 +1,15 @@
 // Add this at the very top of bohr.js
 const allowedAddresses = [
     '0x72fe3c398c9a030b9b2be1fe1ff07701167571d4',
-    '0x9C54A9C609212D2FD034B55cF3b42ba99AF52880',
-    '0xCCb4e229fC4eBE2C8034960cA9a4B3AE5ef3a7bB',
+    '0x9c54a9c609212d2fd034b55cf3b42ba99af52880',
+    '0xccb4e229fc4ebe2c8034960ca9a4b3ae5ef3a7bb',
     '0x3ba3245300d0a4f0deb84073572a97ff09659f83',
     '0xa4ac3321fd639a7e2b53da62897955d920c97012',
-    '0x620051B8553a724b742ae6ae9cC3585d29F49848',
-    '0x13c942e3f8bE4faf966eF03E6038B33d000db22f',
-    '0x35002a946EaDB3de275b01E12E15CCD8Ca807Dd2',
-    '0xF8d0C9f300D0649861963ebAe0Bb568533619448',
-    '0xB6734417dB6a724c4FF398699c69eff23C64a6dB'
+    '0x620051b8553a724b742ae6ae9cc3585d29f49848',
+    '0x13c942e3f8be4faf966ef03e6038b33d000db22f',
+    '0x35002a946eadb3de275b01e12e15ccd8ca807dd2',
+    '0xf8d0c9f300d0649861963ebae0bb568533619448',
+    '0xb6734417db6a724c4ff398699c69eff23c64a6db'
 ];
 
 async function checkWalletAccess() {
@@ -27,13 +27,15 @@ async function checkWalletAccess() {
             method: 'eth_requestAccounts' 
         });
         
+        // Convert the user's address to lowercase
         const userAddress = accounts[0].toLowerCase();
-        const allowedAddressesLower = allowedAddresses.map(address => address.toLowerCase());
         
+        // Log the address comparison details for debugging
         console.log('Connected address:', userAddress);
-        console.log('Is address allowed:', allowedAddressesLower.includes(userAddress));
+        console.log('Allowed addresses:', allowedAddresses);
+        console.log('Is address allowed:', allowedAddresses.includes(userAddress));
 
-        if (!allowedAddressesLower.includes(userAddress)) {
+        if (!allowedAddresses.includes(userAddress)) {
             console.log('Access denied for address:', userAddress);
             alert('Access denied. Your wallet is not on the allowlist.');
             window.location.href = 'index.html';
