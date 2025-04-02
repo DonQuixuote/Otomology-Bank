@@ -13,6 +13,10 @@ const allowedAddresses = [
 
 async function checkWalletAccess() {
     try {
+        // First make sure the page content exists
+        const testingMessage = document.getElementById('testingMessage');
+        const pageContent = document.body;
+
         if (typeof window.ethereum === 'undefined') {
             console.log('MetaMask not detected');
             alert('Please install MetaMask to access this page');
@@ -41,11 +45,20 @@ async function checkWalletAccess() {
 
         // If access granted, show the page content
         console.log('Access granted');
-        document.getElementById('testingMessage').style.display = 'none';
-        document.body.style.display = 'block';
+        if (testingMessage) {
+            testingMessage.style.display = 'none';
+        }
+        if (pageContent) {
+            pageContent.style.display = 'block';
+        }
 
     } catch (error) {
         console.error('Error in checkWalletAccess:', error);
+        // Log more details about the error
+        console.error('Error details:', {
+            message: error.message,
+            stack: error.stack
+        });
         alert('Error connecting to wallet: ' + error.message);
         window.location.href = 'index.html';
     }
@@ -593,11 +606,11 @@ const userCollection = {
         let totalCollected = 0;
         let totalIsotopes = 0;
 
-        // Calculate totals
+        // Calculate totals - only count isotopes that are actually in the collection
         Object.keys(isotopeEquations).forEach(element => {
             const elementIsotopes = isotopeEquations[element] || [];
             const collectedIsotopes = collection[element] || [];
-            totalCollected += collectedIsotopes.length;
+            totalCollected += collectedIsotopes.length; // This only counts checked isotopes
             totalIsotopes += elementIsotopes.length;
         });
 
@@ -612,7 +625,7 @@ const userCollection = {
             label.textContent = `${totalCollected}/${totalIsotopes} Isotopes`;
             
             // Calculate the SVG path for the circle
-            const radius = 15.9155; // This matches your SVG path
+            const radius = 15.9155;
             const circumference = 2 * Math.PI * radius;
             const offset = circumference - (percentValue / 100) * circumference;
             progressPath.style.strokeDasharray = `${circumference} ${circumference}`;
@@ -623,9 +636,6 @@ const userCollection = {
 
 // Update your existing DOMContentLoaded event listener to include these initializations
 document.addEventListener('DOMContentLoaded', () => {
-    // Hide the page content initially
-    document.body.style.display = 'none';
-    
     // Check wallet access
     checkWalletAccess();
 
