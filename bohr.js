@@ -27,15 +27,15 @@ async function checkWalletAccess() {
             method: 'eth_requestAccounts' 
         });
         
-        // Convert the user's address to lowercase
+        // Convert both the user's address and allowed addresses to lowercase for comparison
         const userAddress = accounts[0].toLowerCase();
+        const allowedAddressesLower = allowedAddresses.map(addr => addr.toLowerCase());
         
-        // Log the address comparison details for debugging
+        // Log for debugging
         console.log('Connected address:', userAddress);
-        console.log('Allowed addresses:', allowedAddresses);
-        console.log('Is address allowed:', allowedAddresses.includes(userAddress));
+        console.log('Is address allowed:', allowedAddressesLower.includes(userAddress));
 
-        if (!allowedAddresses.includes(userAddress)) {
+        if (!allowedAddressesLower.includes(userAddress)) {
             console.log('Access denied for address:', userAddress);
             alert('Access denied. Your wallet is not on the allowlist.');
             window.location.href = 'index.html';
