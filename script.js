@@ -1,3 +1,170 @@
+// Add these constants at the top of script.js
+const TOKEN_CONTRACT_ADDRESS = '0x3ad4177248399d47c697659bc86ea657bfaab72f';
+const SHAPE_CHAIN_ID = '0x168'; // Shape mainnet chain ID (360 in decimal)
+
+// ERC-1155 ABI for balanceOf
+const TOKEN_ABI = [{
+    "inputs": [
+        {"internalType": "address","name": "account","type": "address"},
+        {"internalType": "uint256","name": "id","type": "uint256"}
+    ],
+    "name": "balanceOf",
+    "outputs": [{"internalType": "uint256","name": "","type": "uint256"}],
+    "stateMutability": "view",
+    "type": "function"
+}];
+
+async function checkWalletAccess() {
+    try {
+        document.body.style.visibility = 'hidden';
+
+        if (!window.ethereum) {
+            showError('Please install MetaMask to access this site');
+            return false;
+        }
+
+        // Get current chain ID
+        const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+        
+        // Check if we're on Shape network
+        if (chainId !== SHAPE_CHAIN_ID) {
+            try {
+                await window.ethereum.request({
+                    method: 'wallet_switchEthereumChain',
+                    params: [{ chainId: SHAPE_CHAIN_ID }]
+                });
+            } catch (error) {
+                if (error.code === 4902) {
+                    try {
+                        await window.ethereum.request({
+                            method: 'wallet_addEthereumChain',
+                            params: [{
+                                chainId: SHAPE_CHAIN_ID,
+                                chainName: 'Shape',
+                                nativeCurrency: {
+                                    name: 'ETH',
+                                    symbol: 'ETH',
+                                    decimals: 18
+                                },
+                                rpcUrls: ['https://mainnet.shape.network'],
+                                blockExplorerUrls: ['https://shapescan.xyz/']
+                            }]
+                        });
+                    } catch (addError) {
+                        showError('Please add the Shape network to MetaMask manually');
+                        return false;
+                    }
+                } else {
+                    showError('Please switch to the Shape network');
+                    return false;
+                }
+            }
+        }
+
+        // Get user's address
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if (!accounts || accounts.length === 0) {
+            showError('Please connect your wallet');
+            return false;
+        }
+
+        const userAddress = accounts[0];
+        console.log('Connected address:', userAddress);
+
+        // Check token balance using ERC-1155 standard
+        try {
+            const web3 = new Web3(window.ethereum);
+            const contract = new web3.eth.Contract(TOKEN_ABI, TOKEN_CONTRACT_ADDRESS);
+
+            // Check token ID 1 (adjust if needed)
+            const tokenId = 1;
+            const balance = await contract.methods.balanceOf(userAddress, tokenId).call();
+            console.log('Token balance for ID', tokenId, ':', balance);
+
+            if (Number(balance) > 0) {
+                console.log('Access granted - token found');
+                document.body.style.visibility = 'visible';
+                return true;
+            } else {
+                showError('You need to hold at least 1 token to access this page');
+                return false;
+            }
+        } catch (contractError) {
+            console.error('Contract error:', contractError);
+            showError('Error checking token ownership. Please try again.');
+            return false;
+        }
+
+    } catch (error) {
+        console.error('Access check error:', error);
+        showError(`Error: ${error.message}`);
+        return false;
+    }
+}
+
+function showError(message) {
+    document.body.innerHTML = `
+        <div style="text-align: center; padding: 20px; font-family: Arial, sans-serif;">
+            <h1>Access Denied</h1>
+            <p>${message}</p>
+            <div style="margin: 20px 0;">
+                <p>Requirements:</p>
+                <ul style="list-style: none; padding: 0;">
+                    <li>✓ MetaMask installed</li>
+                    <li>✓ Connected to Shape Network</li>
+                    <li>✓ Hold at least 1 token</li>
+                </ul>
+            </div>
+            <p>Get your token here:</p>
+            <a href="https://app.manifold.xyz/c/shunk-to-the-bank" 
+               target="_blank" 
+               style="display: inline-block; 
+                      margin-top: 10px; 
+                      padding: 10px 20px; 
+                      background: #4CAF50; 
+                      color: white; 
+                      text-decoration: none; 
+                      border-radius: 5px; 
+                      transition: background-color 0.3s;">
+                Mint on Manifold
+            </a>
+            <p style="margin-top: 20px;">
+                <button onclick="window.location.reload()" 
+                        style="padding: 10px 20px; 
+                               margin-top: 10px; 
+                               cursor: pointer;">
+                    Try Again
+                </button>
+            </p>
+        </div>
+    `;
+    document.body.style.visibility = 'visible';
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const hasAccess = await checkWalletAccess();
+        if (!hasAccess) {
+            console.log('Access denied or error occurred');
+        }
+    } catch (error) {
+        console.error('Initialization error:', error);
+        showError('Error initializing page. Please refresh and try again.');
+    }
+});
+
+// Listen for network changes
+if (window.ethereum) {
+    window.ethereum.on('chainChanged', () => {
+        window.location.reload();
+    });
+
+    window.ethereum.on('accountsChanged', () => {
+        window.location.reload();
+    });
+}
+
 // Sample data structure for elements
 const elements = {
     // Row 1 (3 elements)
