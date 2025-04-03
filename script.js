@@ -402,7 +402,7 @@ const isotopeEquations = {
         { number: 47, isotope: 'A-47', equation: 'D37+Xl10', energy: '1200' },
         { number: 48, isotope: 'A-48', equation: 'D37+Xl11', energy: '1300' },
         { number: 49, isotope: 'A-49', equation: 'M23+Pt26', energy: '2050' },
-        { number: 50, isotope: 'A-50', equation: 'D39+Xl11', energy: '1400' }
+        { number: 50, isotope: 'A-50', equation: 'D39+Xl11', energy: '1550' }
     ],
     'Aw': [
         { number: 44, isotope: 'Aw-44', equation: 'Fj34+Pq10', energy: '950' },
