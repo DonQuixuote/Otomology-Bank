@@ -292,7 +292,7 @@ const isotopeEquations = {
     'Fw': [
         { number: 21, isotope: 'Fw-21', equation: 'Cq6+Dx15', energy: '700' },
         { number: 22, isotope: 'Fw-22', equation: 'Af7+Dx15', energy: '600' },
-        { number: 23, isotope: 'Fw-23', equation: 'Mineable', energy: '' },
+        { number: 23, isotope: 'Fw-23', equation: 'Aw50', energy: '4600' },
         { number: 24, isotope: 'Fw-24', equation: 'Cq7+Dx17', energy: '1050' },
         { number: 25, isotope: 'Fw-25', equation: 'Mineable', energy: '' },
         { number: 26, isotope: 'Fw-26', equation: 'E48', energy: '4000' }
