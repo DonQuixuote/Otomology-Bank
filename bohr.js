@@ -247,7 +247,7 @@ const isotopeEquations = {
         { number: 7, isotope: 'Dz-7', equation: 'Mineable', energy: '' },
         { number: 8, isotope: 'Dz-8', equation: 'Mineable', energy: '' },
         { number: 9, isotope: 'Dz-9', equation: 'Mineable', energy: '' },
-        { number: 10, isotope: 'Dz-10', equation: 'Xj21', energy: '' }
+        { number: 10, isotope: 'Dz-10', equation: 'Xj21', energy: '880' }
     ],
     'Gj': [
         { number: 9, isotope: 'Gj-9', equation: 'Eb19', energy: '730' },
@@ -257,28 +257,29 @@ const isotopeEquations = {
     'Vi': [
         { number: 10, isotope: 'Vi-10', equation: 'Mineable', energy: '' },
         { number: 11, isotope: 'Vi-11', equation: 'Mineable', energy: '' },
-        { number: 12, isotope: 'Vi-12', equation: 'Dz9+Sr3', energy: '' },
-        { number: 13, isotope: 'Vi-13', equation: 'Dz8+As5', energy: '' },
-        { number: 14, isotope: 'Vi-14', equation: 'Yu31', energy: '' }
+        { number: 12, isotope: 'Vi-12', equation: 'Dz9+Sr3', energy: '460' },
+        { number: 13, isotope: 'Vi-13', equation: 'Dz8+As5', energy: '330' },
+        { number: 14, isotope: 'Vi-14', equation: 'Yu31', energy: '1680' }
     ],
     'Ct': [
         { number: 13, isotope: 'Ct-13', equation: 'Mineable', energy: '' },
-        { number: 14, isotope: 'Ct-14', equation: 'Dz7+As7', energy: '' },
+        { number: 14, isotope: 'Ct-14', equation: 'Dz7+As7', energy: '380' },
         { number: 15, isotope: 'Ct-15', equation: 'Mineable', energy: '' },
-        { number: 16, isotope: 'Ct-16', equation: 'K35', energy: '' },
+        { number: 16, isotope: 'Ct-16', equation: 'K35', energy: '2020' },
         { number: 17, isotope: 'Ct-17', equation: 'Mineable', energy: '' }
     ],
     'T': [
         { number: 15, isotope: 'T-15', equation: 'Mineable', energy: '' },
         { number: 16, isotope: 'T-16', equation: 'Mineable', energy: '' },
-        { number: 17, isotope: 'T-17', equation: 'Mineable', energy: '' }
+        { number: 17, isotope: 'T-17', equation: 'Mineable', energy: '' },
+        { number: 18, isotope: 'T-18', equation: 'Nd33', energy: '1950' }
     ],
     'Xj': [
         { number: 17, isotope: 'Xj-17', equation: 'Mineable', energy: '' },
         { number: 18, isotope: 'Xj-18', equation: 'Mineable', energy: '' },
-        { number: 19, isotope: 'Xj-19', equation: 'Xj17+Sr2', energy: '' },
-        { number: 20, isotope: 'Xj-20', equation: 'Mt37', energy: '' },
-        { number: 21, isotope: 'Xj-21', equation: 'Gd45', energy: '' }
+        { number: 19, isotope: 'Xj-19', equation: 'Xj17+Sr2', energy: '480' },
+        { number: 20, isotope: 'Xj-20', equation: 'Mt37', energy: '2310' },
+        { number: 21, isotope: 'Xj-21', equation: 'Gd45', energy: '2800' }
     ],
     'Eb': [
         { number: 19, isotope: 'Eb-19', equation: 'Mineable', energy: '' },
@@ -288,103 +289,109 @@ const isotopeEquations = {
     ],
     'P': [
         { number: 21, isotope: 'P-21', equation: 'Mineable', energy: '' },
-        { number: 22, isotope: 'P-22', equation: '', energy: '' },
+        { number: 22, isotope: 'P-22', equation: 'Mineable', energy: '' },
         { number: 23, isotope: 'P-23', equation: 'Mineable', energy: '' },
-        { number: 24, isotope: 'P-24', equation: 'Ct17+As7', energy: '' }
+        { number: 24, isotope: 'P-24', equation: 'Ct17+As7', energy: '570' }
     ],
     'Ro': [
         { number: 22, isotope: 'Ro-22', equation: 'Mineable', energy: '' },
         { number: 23, isotope: 'Ro-23', equation: 'Mineable', energy: '' },
         { number: 24, isotope: 'Ro-24', equation: 'Mineable', energy: '' },
-        { number: 25, isotope: 'Ro-25', equation: 'P23+Sr1', energy: '600' }
+        { number: 25, isotope: 'Ro-25', equation: 'P23+Sr1', energy: '760' },
+        { number: 26, isotope: 'Ro-26', equation: 'Dz9+T17', energy: '900' },
+        { number: 27, isotope: 'Ro-27', equation: 'Pb51', energy: '3650' }
     ],
     'Cl': [
         { number: 25, isotope: 'Cl-25', equation: 'Mineable', energy: '' },
         { number: 26, isotope: 'Cl-26', equation: 'Mineable', energy: '' },
         { number: 27, isotope: 'Cl-27', equation: 'Mineable', energy: '' },
-        { number: 28, isotope: 'Cl-28', equation: 'Ro24+Sr1', energy: '660' }
+        { number: 28, isotope: 'Cl-28', equation: 'Eb22+As6', energy: '930' }
     ],
     'Yu': [
         { number: 27, isotope: 'Yu-27', equation: 'Mineable', energy: '' },
-        { number: 28, isotope: 'Yu-28', equation: 'Cl26+Sr1', energy: '680' },
+        { number: 28, isotope: 'Yu-28', equation: 'Yu27+Sr1', energy: '600' },
         { number: 29, isotope: 'Yu-29', equation: 'Mineable', energy: '' },
-        { number: 30, isotope: 'Yu-30', equation: 'Cl27+Sr1', energy: '700' },
-        { number: 31, isotope: 'Yu-31', equation: 'Cl28+Sr1', energy: '720' }
+        { number: 30, isotope: 'Yu-30', equation: 'Ct15+Ct15', energy: '1100' },
+        { number: 31, isotope: 'Yu-31', equation: 'Dz9+Eb22', energy: '1060' }
     ],
     'Nd': [
-        { number: 29, isotope: 'Nd-29', equation: 'Yu27+Sr1', energy: '700' },
+        { number: 29, isotope: 'Nd-29', equation: 'Ro22+As7', energy: '780' },
         { number: 30, isotope: 'Nd-30', equation: 'Mineable', energy: '' },
-        { number: 31, isotope: 'Nd-31', equation: 'Yu29+Sr1', energy: '740' },
-        { number: 32, isotope: 'Nd-32', equation: 'Yu29+Yu29 or Sr1+Yu30', energy: '2100' },
-        { number: 33, isotope: 'Nd-33', equation: 'Yu30+Sr1', energy: '760' },
-        { number: 34, isotope: 'Nd-34', equation: 'Yu31+Sr1', energy: '780' }
+        { number: 31, isotope: 'Nd-31', equation: 'Eb20+Gj11', energy: '1150' },
+        { number: 32, isotope: 'Nd-32', equation: 'Ei5+Cl27', energy: '1060' },
+        { number: 33, isotope: 'Nd-33', equation: 'Eb22+Gj11', energy: '1150' },
+        { number: 34, isotope: 'Nd-34', equation: 'Ct17+Ct17', energy: '610' }
     ],
     'K': [
         { number: 31, isotope: 'K-31', equation: 'Mineable', energy: '' },
-        { number: 32, isotope: 'K-32', equation: 'Nd29+Sr1', energy: '760' },
-        { number: 33, isotope: 'K-33', equation: 'Nd30+Sr1', energy: '780' },
+        { number: 32, isotope: 'K-32', equation: 'Cl25+As7', energy: '860' },
+        { number: 33, isotope: 'K-33', equation: 'Cl26+As7', energy: '890' },
         { number: 34, isotope: 'K-34', equation: 'Mineable', energy: '' },
-        { number: 35, isotope: 'K-35', equation: 'Nd32+Sr1', energy: '820' }
+        { number: 35, isotope: 'K-35', equation: 'Xj18+Ct17', energy: '900' }
     ],
     'Mt': [
         { number: 32, isotope: 'Mt-32', equation: 'Mineable', energy: '' },
-        { number: 33, isotope: 'Mt-33', equation: 'K31+K31 or Sr1+K31', energy: '2400' },
+        { number: 33, isotope: 'Mt-33', equation: 'Sr1+Mt32', energy: '730' },
         { number: 34, isotope: 'Mt-34', equation: 'Mineable', energy: '' },
         { number: 35, isotope: 'Mt-35', equation: 'Mineable', energy: '' },
-        { number: 36, isotope: 'Mt-36', equation: 'K34+Sr1', energy: '860' },
-        { number: 37, isotope: 'Mt-37', equation: 'K35+Sr1', energy: '880' }
+        { number: 36, isotope: 'Mt-36', equation: 'K34+Sr2', energy: '1030' },
+        { number: 37, isotope: 'Mt-37', equation: 'K34+Sr3', energy: '1080' }
     ],
     'Lu': [
-        { number: 35, isotope: 'Lu-35', equation: 'Mt33+Sr1', energy: '840' },
-        { number: 36, isotope: 'Lu-36', equation: 'Mt34+Sr1', energy: '860' },
-        { number: 37, isotope: 'Lu-37', equation: 'Mt33+Mt33 or Sr1+Mt35', energy: '2550' },
-        { number: 38, isotope: 'Lu-38', equation: 'Lu37+Sr1', energy: '900' },
-        { number: 39, isotope: 'Lu-39', equation: 'Lu38+Sr1', energy: '920' },
-        { number: 40, isotope: 'Lu-40', equation: 'Lu39+Lu39', energy: '2700' }
+        { number: 35, isotope: 'Lu-35', equation: 'Mt32+Sr3', energy: '800' },
+        { number: 36, isotope: 'Lu-36', equation: 'Mt35+Sr1', energy: '980' },
+        { number: 37, isotope: 'Lu-37', equation: 'Mt35+Sr2', energy: '1050' },
+        { number: 38, isotope: 'Lu-38', equation: 'Eb22+T16', energy: '1520' },
+        { number: 39, isotope: 'Lu-39', equation: 'Eb22+T17', energy: '1550' },
+        { number: 40, isotope: 'Lu-40', equation: 'Xj20+Xj20', energy: '1100' }
     ],
     'Dx': [
-        { number: 37, isotope: 'Dx-37', equation: 'Lu35+Sr1', energy: '880' },
-        { number: 38, isotope: 'Dx-38', equation: 'Lu36+Sr1', energy: '900' },
-        { number: 39, isotope: 'Dx-39', equation: 'Lu37+Lu37 or Sr1+Lu37', energy: '2700' }
+        { number: 37, isotope: 'Dx-37', equation: 'Cl27+Vi10', energy: '880' },
+        { number: 38, isotope: 'Dx-38', equation: 'Eb19+Eb19', energy: '950' },
+        { number: 39, isotope: 'Dx-39', equation: 'Eb21+Xj18', energy: '1550' },
+        { number: 40, isotope: 'Dx-40', equation: 'Mt35+Ei5', energy: '1220' },
+        { number: 41, isotope: 'Dx-41', equation: 'K34+As7', energy: '1300' }
+        
     ],
     'Gd': [
-        { number: 39, isotope: 'Gd-39', equation: 'Dx37+Sr1', energy: '920' },
-        { number: 40, isotope: 'Gd-40', equation: 'Dx39+Dx39', energy: '2850' },
-        { number: 41, isotope: 'Gd-41', equation: 'Dx38+Sr1', energy: '940' },
-        { number: 42, isotope: 'Gd-42', equation: 'Gd41+Sr1', energy: '960' },
-        { number: 43, isotope: 'Gd-43', equation: 'Gd42+Sr1', energy: '980' },
-        { number: 44, isotope: 'Gd-44', equation: 'Gd43+Sr1', energy: '1000' },
-        { number: 45, isotope: 'Gd-45', equation: 'Gd44+Gd44', energy: '3000' }
+        { number: 39, isotope: 'Gd-39', equation: 'Dx38+Sr1', energy: '810' },
+        { number: 40, isotope: 'Gd-40', equation: 'Cl25+Ct15', energy: '1200' },
+        { number: 41, isotope: 'Gd-41', equation: 'Ro24+T17', energy: '1310' },
+        { number: 42, isotope: 'Gd-42', equation: 'Cl25+Ct17', energy: '915' },
+        { number: 43, isotope: 'Gd-43', equation: 'Eb22+Eb21', energy: '1730' },
+        { number: 44, isotope: 'Gd-44', equation: 'Eb22+Eb22', energy: '1750' },
+        { number: 45, isotope: 'Gd-45', equation: 'Gj11+Nd34', energy: '1100' }
     ],
     'V': [
-        { number: 41, isotope: 'V-41', equation: 'Gd39+Sr1', energy: '960' },
-        { number: 42, isotope: 'V-42', equation: 'Gd40+Sr1', energy: '980' },
-        { number: 43, isotope: 'V-43', equation: 'Gd40+Gd40', energy: '3000' },
-        { number: 44, isotope: 'V-44', equation: 'V43+Sr1', energy: '1020' },
-        { number: 45, isotope: 'V-45', equation: 'V44+Sr1', energy: '1040' },
-        { number: 46, isotope: 'V-46', equation: 'V45+V45', energy: '3150' }
+        { number: 41, isotope: 'V-41', equation: 'Cl25+T16', energy: '450' },
+        { number: 42, isotope: 'V-42', equation: 'Cl26+T17', energy: '500' },
+        { number: 43, isotope: 'V-43', equation: 'Nd30+Vi13', energy: '1230' },
+        { number: 44, isotope: 'V-44', equation: 'Ct17+Yu27', energy: '950' },
+        { number: 45, isotope: 'V-45', equation: 'K34+Gj11', energy: '1520' },
+        { number: 46, isotope: 'V-46', equation: 'Ct17+Yu29', energy: '1300' }
     ],
     'Uq': [
-        { number: 42, isotope: 'Uq-42', equation: 'V41+Sr1', energy: '1000' },
-        { number: 43, isotope: 'Uq-43', equation: 'V42+Sr1', energy: '1020' },
-        { number: 44, isotope: 'Uq-44', equation: 'V43+Sr1', energy: '1040' },
-        { number: 45, isotope: 'Uq-45', equation: 'V43+V43 or Sr1+V44', energy: '3150' },
-        { number: 46, isotope: 'Uq-46', equation: 'Uq45+Sr1', energy: '1080' },
+        { number: 42, isotope: 'Uq-42', equation: 'Mt32+Vi10', energy: '2300' },
+        { number: 43, isotope: 'Uq-43', equation: 'Eb20+Ro23', energy: '1635' },
+        { number: 44, isotope: 'Uq-44', equation: 'P22+P22', energy: '1900' },
+        { number: 45, isotope: 'Uq-45', equation: 'Eb22+Ro23', energy: '1650' },
+        { number: 46, isotope: 'Uq-46', equation: 'Yu29+T17', energy: '1200' },
         { number: 47, isotope: 'Uq-47', equation: 'Mineable', energy: '' }
     ],
     'Pb': [
-        { number: 44, isotope: 'Pb-44', equation: 'Uq42+Sr1', energy: '1060' },
-        { number: 45, isotope: 'Pb-45', equation: 'Uq43+Sr1', energy: '1080' },
-        { number: 46, isotope: 'Pb-46', equation: 'Uq44+Sr1', energy: '1100' },
-        { number: 47, isotope: 'Pb-47', equation: 'Uq45+Sr1', energy: '1120' },
+        {number: 43, isotope: 'Pb-43', equations: 'S94', energy: '6700'},
+        { number: 44, isotope: 'Pb-44', equation: 'Ro22+Ro22', energy: '1080' },
+        { number: 45, isotope: 'Pb-45', equation: 'T15+Nd30', energy: '1170' },
+        { number: 46, isotope: 'Pb-46', equation: 'T16+Nd30', energy: '1540' },
+        { number: 47, isotope: 'Pb-47', equation: 'Eb22+Cl25', energy: '1580' },
         { number: 48, isotope: 'Pb-48', equation: 'Mineable', energy: '' },
-        { number: 49, isotope: 'Pb-49', equation: 'Pb47+Sr1', energy: '1140' },
-        { number: 50, isotope: 'Pb-50', equation: 'Pb48+Sr1', energy: '1160' },
-        { number: 51, isotope: 'Pb-51', equation: 'Pb49+Sr1', energy: '1180' }
+        { number: 49, isotope: 'Pb-49', equation: 'Eb22+Cl27', energy: '2100' },
+        { number: 50, isotope: 'Pb-50', equation: 'Sr3+Uq47', energy: '1130' },
+        { number: 51, isotope: 'Pb-51', equation: 'Ct17+K34', energy: '1500' }
     ],
     'Wy': [
         { number: 47, isotope: 'Wy-47', equation: 'Pb48+Pb48 or Sr1+Pb46', energy: '3450' },
-        { number: 48, isotope: 'Wy-48', equation: 'Pb44+Sr1', energy: '1140' },
+        { number: 48, isotope: 'Wy-48', equation: 'Mt32+T16', energy: '1450' },
         { number: 49, isotope: 'Wy-49', equation: 'Pb45+Sr1', energy: '1160' },
         { number: 50, isotope: 'Wy-50', equation: 'Mineable', energy: '' }
     ],
@@ -445,7 +452,7 @@ const isotopeEquations = {
     ],
     'F': [
         { number: 62, isotope: 'F-62', equation: 'Ai61+Sr1', energy: '2000' },
-        { number: 63, isotope: 'F-63', equation: 'Ai62+Sr1', energy: '2020' },
+        { number: 63, isotope: 'F-63', equation: 'K31+Mt32', energy: '1550' },
         { number: 64, isotope: 'F-64', equation: 'Ai63+Sr1', energy: '2040' },
         { number: 65, isotope: 'F-65', equation: 'Ai67+Ai67 or Sr1+Ai64', energy: '4200' },
         { number: 66, isotope: 'F-66', equation: 'Ai64+Sr1', energy: '2060' }
@@ -604,14 +611,14 @@ const isotopeEquations = {
         { number: 104, isotope: 'Da-104', equation: 'Da103+Da103', energy: '7300' }
     ],
     'S': [
-        { number: 94, isotope: 'S-94', equation: 'Da93+Sr1', energy: '4040' },
-        { number: 95, isotope: 'S-95', equation: 'Da94+Sr1', energy: '4060' },
-        { number: 96, isotope: 'S-96', equation: 'S95+S95 or Sr1+Da95', energy: '7450' },
-        { number: 97, isotope: 'S-97', equation: 'S96+Sr1', energy: '4080' },
-        { number: 98, isotope: 'S-98', equation: 'S97+Sr1', energy: '4100' },
-        { number: 99, isotope: 'S-99', equation: 'S98+Sr1', energy: '4120' },
-        { number: 100, isotope: 'S-100', equation: 'S99+Sr1', energy: '4140' },
-        { number: 101, isotope: 'S-101', equation: 'S100+Sr1', energy: '4160' },
+        { number: 94, isotope: 'S-94', equation: 'S95+P21', energy: '2200' },
+        { number: 95, isotope: 'S-95', equation: 'S96+P21', energy: '2200' },
+        { number: 96, isotope: 'S-96', equation: 'S97+P21', energy: '2300' },
+        { number: 97, isotope: 'S-97', equation: 'S98+P21', energy: '2500' },
+        { number: 98, isotope: 'S-98', equation: 'S99+P21', energy: '2410' },
+        { number: 99, isotope: 'S-99', equation: 'S100+P21', energy: '2400' },
+        { number: 100, isotope: 'S-100', equation: 'S101+P21', energy: '2600' },
+        { number: 101, isotope: 'S-101', equation: 'S102+P21', energy: '2600' },
         { number: 102, isotope: 'S-102', equation: 'Mineable', energy: '' }
     ],
     'Z': [
